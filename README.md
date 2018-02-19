@@ -1,2 +1,7 @@
-# Ictlab-Application
-Ionic room booking application for INFLAB01
+# Ionic Application
+
+npm install -g cordova ionic
+
+cd Timetable
+
+ionic serve
