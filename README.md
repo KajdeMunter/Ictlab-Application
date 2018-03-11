@@ -12,3 +12,7 @@ __(!)__ MAC OS ONLY + APPLE DEVELOPERS TEAM REQUIRED
 3. open plaftorms -> ios -> Timetable.xcodeproj
 4. add your Apple Developers Team to the project
 5. run project on a simulator or your device
+
+### Deploying your Android app 
+__work this out in the future__
+
