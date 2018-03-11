@@ -6,7 +6,7 @@
 3. ionic serve
 
 ### Deploying your iOS app 
-(!) MAC OS ONLY + APPLE DEVELOPERS TEAM REQUIRED
+__(!)__ MAC OS ONLY + APPLE DEVELOPERS TEAM REQUIRED
 1. check if 'platforms' folder excists, if not, run: ionic cordova platform add ios
 2. ionic cordova prepare && ionic build
 3. open plaftorms -> ios -> Timetable.xcodeproj
