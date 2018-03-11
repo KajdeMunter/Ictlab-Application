@@ -1,3 +1,80 @@
 page-home {
 
+  .content {
+    background: linear-gradient(map-get($colors, primary ), #990227);
+  }
+
+  .bar {
+    position: relative;
+    display: block;
+  }
+
+  .hro {
+    margin-top: 10%;
+    height: 15%;
+  }
+
+  .hro img {
+    width: 58px;
+    height: 58px;
+  }
+
+  .booking {
+    top: 0;
+    height: 20%;
+  }
+
+  .booking .button {
+    margin: 0 auto;
+    border-radius: 25px;
+    width: 65%;
+  }
+
+  .booking .button ion-icon {
+    position: absolute;
+    padding-left: 20px;
+    left: 0;
+  }
+
+  .rooms {
+    bottom: 0;
+    background: linear-gradient(map-get($colors, light ), #ebebeb);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  .rooms .room-txt {
+    height: 58px;
+  }
+
+  h2 {
+    font-size: 28px !important;
+    font-weight: bold;
+  }
+
+  ion-slides {
+    height: 140px;
+    margin-top: 0%;
+  }
+
+  ion-slide:first-child {
+    margin-left: 16px;
+  }
+
+  .card {
+    width: 90%;
+    height: 140px;
+    display: block;
+    border-radius: 6px;
+    background-image: url('./../assets/imgs/roombg1.jpg');
+    background-size: cover;
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+    padding-top: 55px;
+}
+
+
+
+
 }

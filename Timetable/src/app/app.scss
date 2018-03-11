@@ -14,3 +14,26 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+.center { text-align: center !important; }
+
+.padding {padding: 16px; }
+.padleft { padding-left: 16px; }
+.padright { padding-right: 16px; }
+.padtop { padding-top: 16px; }
+.padbottom { padding-bottom: 16px; }
+
+.padlefthalf { padding-left: 8px; }
+.padrighthalf { padding-right: 8px; }
+.padtophalf { padding-top: 8px; }
+.padbottomhalf { padding-bottom: 8px; }
+
+.margin {margin: 16px; }
+.margleft { margin-left: 16px; }
+.margright { margin-right: 16px; }
+.margtop { margin-top: 16px; }
+.margbottom { margin-bottom: 16px; }
+
+.marglefthalf { margin-left: 8px; }
+.margrighthalf { margin-right: 8px; }
+.margtophalf { margin-top: 8px; }
+.margbottomhalf { margin-bottom: 8px; }
