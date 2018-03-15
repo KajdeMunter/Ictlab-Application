@@ -1,14 +1,56 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-       Dashboard
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+<ion-content>
+  <div class="hro center">
+    <img src='./assets/imgs/hro.png'>
+  </div>
+  <div class="booking bar center">
+    <button ion-button color="light">
+      <ion-icon name="ios-search"></ion-icon>
+      Need a room?
+    </button>
+  </div>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <div class="rooms bar padbottom">
+    <div class="room-txt">
+      <h2 class="padleft padtop">Available Rooms</h2>
+    </div>
+    <ion-slides slidesPerView="1.3" spaceBetween="1">
+      <ion-slide>
+        <div class="card">H.4.308</div>
+      </ion-slide>
+      <ion-slide>
+        <div class="card">WD.1.016</div>
+      </ion-slide>
+      <ion-slide>
+        <div class="card">H.1.108</div>
+      </ion-slide>
+      <ion-slide>
+        <div class="card">H.3.401</div>
+      </ion-slide>
+      <ion-slide>
+        <!-- need a empty slide to avoid last item to be inaccessible -->
+      </ion-slide>
+    </ion-slides>
+      <div class="room-txt">
+        <h2 class="padleft padtop">Recent Searches</h2>
+      </div>
+      <ion-slides slidesPerView="1.3" spaceBetween="1">
+        <ion-slide>
+          <div class="card">H.4.308</div>
+        </ion-slide>
+        <ion-slide>
+          <div class="card">H.1.304</div>
+        </ion-slide>
+        <ion-slide>
+          <div class="card">H.2.406</div>
+        </ion-slide>
+        <ion-slide>
+          <div class="card">H.4.108</div>
+        </ion-slide>
+        <ion-slide>
+          <!-- need a empty slide to avoid last item to be inaccessible -->
+        </ion-slide>
+      </ion-slides>
+    </div>
+
+
 </ion-content>
