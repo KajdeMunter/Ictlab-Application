@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { Firebase } from '@ionic-native/firebase'
 
 import { MyApp } from './app.component';
 
@@ -14,6 +15,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
 import { SchedulePage } from '../pages/schedule/schedule';
 import { RoomsPage } from '../pages/rooms/rooms';
 import { AccountPage } from '../pages/account/account';
+import { PushnotificationPage } from '../pages/pushnotification/pushnotification';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { AccountPage } from '../pages/account/account';
     SchedulePage,
     RoomsPage,
     AccountPage
+    HomePage,
+    PushnotificationPage
   ],
   imports: [
     BrowserModule,
@@ -38,8 +42,11 @@ import { AccountPage } from '../pages/account/account';
     SchedulePage,
     RoomsPage,
     AccountPage
+    HomePage,
+    PushnotificationPage
   ],
   providers: [
+    Firebase,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},

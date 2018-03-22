@@ -4,12 +4,15 @@ import { GooglePlus } from '@ionic-native/google-plus';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { RoomsPage } from '../rooms/rooms';
 import { Tabs } from 'ionic-angular/navigation/nav-interfaces';
+import { NavController } from 'ionic-angular';
+import { PushnotificationPage } from '../pushnotification/pushnotification'
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
+  pushNotificationPage = PushnotificationPage;
 
   constructor(
     public navCtrl: NavController,

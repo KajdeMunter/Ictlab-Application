@@ -1,13 +1,16 @@
 <ion-content>
-  <div class="main-container">
-    <div class="image">
-      <img src='./assets/imgs/hro.png'>
+    <div class="main-container">
+        <div class="image">
+            <img src='./assets/imgs/hro.png'>
+        </div>
+        <button ion-button color="light" class="btn-large" (click)="selectTab(2)">
+            <ion-icon name="ios-search"></ion-icon>
+            Need a room?
+        </button>
+        <button [navPush]="pushNotificationPage">
+            PUSH NOTIFICATION PAGE
+        </button>
     </div>
-      <button ion-button color="light" class="btn-large" (click)="selectTab(2)">
-        <ion-icon name="ios-search"></ion-icon>
-        Need a room?
-      </button>
-  </div>
   <div class="slide-container">
     <div class="rooms-slider" (click)="selectTab(2)">
         <div class="text">Available Rooms</div>
