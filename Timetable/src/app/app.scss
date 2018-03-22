@@ -14,6 +14,10 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+.toolbar-background { background-color: map-get($colors, primary ); }
+.toolbar-title { color: #ffffff;}
+
 .center { text-align: center !important; }
 
 .padding {padding: 16px; }
@@ -37,3 +41,13 @@
 .margrighthalf { margin-right: 8px; }
 .margtophalf { margin-top: 8px; }
 .margbottomhalf { margin-bottom: 8px; }
+
+.thumbnail {
+  height: 56px !important;
+  width: 56px !important;
+  background: linear-gradient(map-get($colors, primary ), #ca0133);
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+}

@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Account</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+
+  <div class="text">Account</div>
+  <div class="account-container">
+    <button no-padding ion-item>My bookings</button>
+    <button no-padding ion-item>{{ user }}'s Profile</button>
+    <button no-padding ion-item (click)="logout()">Logout</button>
+  </div>
+  <div class="text">Help</div>
+  <div class="account-container">
+    <button no-padding ion-item>Report incident</button>
+    <button no-padding ion-item>How does it work?</button>
+    <button no-padding ion-item>About us</button>
+  </div>
+</ion-content>

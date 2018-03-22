@@ -9,13 +9,21 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { TabBarPage } from '../pages/tab-bar/tab-bar';
+import { GooglePlus } from '@ionic-native/google-plus';
+import { NativeStorage } from '@ionic-native/native-storage';
+import { SchedulePage } from '../pages/schedule/schedule';
+import { RoomsPage } from '../pages/rooms/rooms';
+import { AccountPage } from '../pages/account/account';
 
 @NgModule({
   declarations: [
     MyApp,
     TabBarPage,
     HomePage,
-    LoginPage
+    LoginPage,
+    SchedulePage,
+    RoomsPage,
+    AccountPage
   ],
   imports: [
     BrowserModule,
@@ -26,12 +34,17 @@ import { TabBarPage } from '../pages/tab-bar/tab-bar';
     MyApp,
     TabBarPage,
     HomePage,
-    LoginPage
+    LoginPage,
+    SchedulePage,
+    RoomsPage,
+    AccountPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    GooglePlus,
+    NativeStorage
   ]
 })
 export class AppModule {}
