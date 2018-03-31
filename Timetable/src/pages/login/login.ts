@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { GooglePlus } from '@ionic-native/google-plus';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { TabBarPage } from '../tab-bar/tab-bar';
+import { UserModel } from '../../models/user';
+import * as config from '../../app/config';
 
 @IonicPage()
 @Component({
@@ -12,36 +14,43 @@ import { TabBarPage } from '../tab-bar/tab-bar';
 export class LoginPage {
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public loadingCtrl: LoadingController,
     public navParams: NavParams,
     public googlePlus: GooglePlus,
     public nativeStorage: NativeStorage
-  ) { }
+  ) { 
+    this.navCtrl = navCtrl;
+  }
 
-  login(){
-    let loading = this.loadingCtrl.create({ content: 'Please wait...' });
+
+  public signIn() {
+    this.nativeStorage.clear();
+    let loading = this.loadingCtrl.create({ content: config.loading });
     loading.present();
-    this.googlePlus.login({'webClientId': '303796026665-lqbuq0ct6v42lq3k1ee2cu1t8d7iholj.apps.googleusercontent.com'})
-    .then((user) => {
-      loading.dismiss();
-      console.log(user);
-      this.nativeStorage.setItem('user', {
-        name: user.displayName,
-        email: user.email,
-        picture: user.imageUrl
+
+    this.googlePlus.login({
+      'webClientId': config.webClientId,
+      'offline': false
+    })
+    .then((res) => {
+      loading.dismiss().then(() => {
+        this.navCtrl.setRoot(TabBarPage, {}, {animate: true, direction: 'forward'})
       })
-      .then(() => {
-        this.navCtrl.setRoot(TabBarPage);
-        console.log(this.nativeStorage.getItem('user'))
-      }, function (error) {
-        console.log(error);
-      })
-    }, function (error) {
-      console.log(error);
+
+      let user = new UserModel(res, function(completeUser){
+      console.log(completeUser.fullName);
+      let nativeStorage = new NativeStorage();
+      nativeStorage.setItem('user', { user })
+      });
+    }, (err) => {
+      console.log(err)
       loading.dismiss();
+    }
+    ).then(() => {
     });
   }
 
+  
 }
 

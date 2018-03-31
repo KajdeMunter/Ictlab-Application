@@ -15,6 +15,7 @@ page-account {
     margin-left: 16px;
   }
 
+  .item { border: 0.55px solid #c8c7cc !important}
   .item:first-child { border-top-right-radius: 6px; border-top-left-radius: 6px; }
   .item:last-child { border-bottom-right-radius: 6px; border-bottom-left-radius: 6px; }
   .button { border: none !important;}

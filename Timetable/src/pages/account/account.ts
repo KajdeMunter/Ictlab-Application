@@ -1,15 +1,13 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { App, IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { LoginPage } from '../login/login';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { HttpClient } from '@angular/common/http';
+import 'rxjs/add/operator/map';
+import { Jsonp } from '@angular/http';
+import * as config from '../../app/config';
 
-/**
- * Generated class for the AccountPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -18,42 +16,34 @@ import { NativeStorage } from '@ionic-native/native-storage';
 })
 export class AccountPage {
 
-  user: String = null;
+  user: any;
 
   constructor(
-    public navCtrl: NavController, 
+    public app: App,
+    public navCtrl: NavController,
     public loadingCtrl: LoadingController,
     public navParams: NavParams,
     public googlePlus: GooglePlus,
-    public nativeStorage: NativeStorage
+    public nativeStorage: NativeStorage,
+    private http: HttpClient,
+    private jsonp: Jsonp
 
-  ) {  }
+  ) { }
 
-  ionViewWillEnter() {
-    console.log('Entered.')
-    this.nativeStorage.getItem('user').then(
-      data => { this.user = data['name']; },
-      error => console.error(error)
-    );  
-  }
-
-
-  logout(){
-    let loading = this.loadingCtrl.create({ content: 'Logging out...' });
+  logout() {
+    let loading = this.loadingCtrl.create({ content: config.logout });
     loading.present();
-      this.googlePlus.logout()
+    this.googlePlus.logout()
       .then(() => {
-        console.log("logged out");
         this.nativeStorage.clear()
-        .then(() => {
-        console.log("storage cleared");
-        this.navCtrl.setRoot(LoginPage);
-        loading.dismiss();
-        })
+          .then(() => {
+            loading.dismiss().then(() => {
+              this.app.getRootNav().setRoot(LoginPage, {}, {animate: true, direction: 'back'});
+            });
+          })
       }, function (error) {
-        this.navCtrl.setRoot(LoginPage);
         console.log(error);
       });
-}
+  }
 
 }
