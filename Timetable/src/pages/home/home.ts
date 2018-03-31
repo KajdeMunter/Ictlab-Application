@@ -6,7 +6,6 @@ import { ApiProvider } from '../../providers/api/api';
 import { FilterPage } from '../filter/filter';
 import { RoomsPage } from '../rooms/rooms';
 import { Tabs } from 'ionic-angular/navigation/nav-interfaces';
-import { NavController } from 'ionic-angular';
 import { PushnotificationPage } from '../pushnotification/pushnotification'
 
 

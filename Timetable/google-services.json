@@ -1,0 +1,66 @@
+{
+  "project_info": {
+    "project_number": "303796026665",
+    "firebase_url": "https://hr-timetable.firebaseio.com",
+    "project_id": "hr-timetable",
+    "storage_bucket": "hr-timetable.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:303796026665:android:acdaa9c3f1c0778a",
+        "android_client_info": {
+          "package_name": "ger.ben.timetable"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "303796026665-03o2q1cg61gp4oceuokjm84dfv0ot3m2.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "303796026665-3atdgkeftteonf7kjj7pc10n2o6hubbh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ger.ben.timetable",
+            "certificate_hash": "6d89d20102268964f178e417b41ed935057d7811"
+          }
+        },
+        {
+          "client_id": "303796026665-rmlcf4k7pv68h9dq76dn2044mtv66els.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIJ_j-EOObHHS425ynAzHHTSoIRgn0gKc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "303796026665-03o2q1cg61gp4oceuokjm84dfv0ot3m2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "303796026665-e9m531sb831o8v3cmdo9avt1cg634gst.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "ger.ben.timetable"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

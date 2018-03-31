@@ -9,9 +9,6 @@ import { GooglePlus } from '@ionic-native/google-plus';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import {JsonpModule} from '@angular/http';
 
-
-
-
 import { MyApp } from './app.component';
 
 import { HomePage } from '../pages/home/home';
@@ -25,6 +22,9 @@ import { ApiProvider } from '../providers/api/api';
 import { HTTP } from '@ionic-native/http';
 import { FilterPage } from '../pages/filter/filter';
 import { PushnotificationPage } from '../pages/pushnotification/pushnotification';
+
+import { Push, PushObject, PushOptions } from '@ionic-native/push';
+import { FcmProvider } from '../providers/fcm/fcm';
 
 @NgModule({
   declarations: [
@@ -59,13 +59,15 @@ import { PushnotificationPage } from '../pages/pushnotification/pushnotification
   ],
   providers: [
     Firebase,
+    Push,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     GooglePlus,
     NativeStorage,
     ApiProvider,
-    HTTP
+    HTTP,
+    FcmProvider
   ]
 })
 export class AppModule {}
