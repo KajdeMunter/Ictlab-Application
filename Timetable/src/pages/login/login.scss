@@ -1,5 +1,7 @@
 page-login {
-  .content { background: linear-gradient(map-get($colors, primary ), #990227); text-align: center; }
+  .content { 
+    background: linear-gradient(map-get($colors, primary ), #990227); text-align: center; 
+  }
   .container { 
     height: 80%; 
     img {

@@ -81,10 +81,17 @@
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
     <plugin name="cordova-plugin-ionic-webview" spec="^1.1.16" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
-    <plugin name="cordova-plugin-googleplus" spec="https://github.com/EddyVerbruggen/cordova-plugin-googleplus">
-        <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.303796026665-lqbuq0ct6v42lq3k1ee2cu1t8d7iholj" />
-    </plugin>
     <plugin name="cordova-plugin-nativestorage" spec="^2.3.1" />
+    <plugin name="cordova-plugin-statusbar" spec="^2.4.1" />
+    <plugin name="cordova-plugin-googleplus" spec="https://github.com/EddyVerbruggen/cordova-plugin-googleplus">
+        <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.303796026665-nge73u8t24odk21423a9osdt9mbid2th" />
+    </plugin>
+    <allow-navigation href="http://192.168.2.70:8100" />
+    <allow-navigation href="http://192.168.2.70:8101" />
+    <allow-navigation href="http://169.254.158.2:8100" />
+    <allow-navigation href="http://145.24.254.205:8100" />
+    <allow-navigation href="http://145.24.254.101:8100" />
+    <plugin name="cordova-plugin-advanced-http" spec="^1.11.1" />
     <engine name="ios" spec="4.5.4" />
     <engine name="android" spec="7.0.0" />
 </widget>

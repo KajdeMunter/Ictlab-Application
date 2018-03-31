@@ -1,22 +1,8 @@
-// http://ionicframework.com/docs/theming/
-
-
-// App Global Sass
-// --------------------------------------------------
-// Put style rules here that you want to apply globally. These
-// styles are for the entire app and not just one component.
-// Additionally, this file can be also used as an entry point
-// to import other Sass files to be included in the output CSS.
-//
-// Shared Sass variables, which can be used to adjust Ionic's
-// default Sass variables, belong in "theme/variables.scss".
-//
-// To declare rules for a specific mode, create a child rule
-// for the .md, .ios, or .wp mode classes. The mode class is
-// automatically applied to the <body> element in the app.
-
+.content { background: map-get($colors, light ) }
+.bar-button { color: white !important; }
+.list, .item { background: transparent; }
 .toolbar-background { background-color: map-get($colors, primary ); }
-.toolbar-title { color: #ffffff;}
+.toolbar-title { color: #ffffff; }
 
 .center { text-align: center !important; }
 
@@ -42,12 +28,31 @@
 .margtophalf { margin-top: 8px; }
 .margbottomhalf { margin-bottom: 8px; }
 
+
+
+.list { margin-bottom: 6px; }
+
+.text {
+  font-size: 20px;
+  font-weight: bold;
+  padding-left: 16px;
+  padding-top: 16px;
+  padding-bottom: 0px;
+}
+
+.list-header {
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: capitalize !important;
+  color: #000000;
+}
+
 .thumbnail {
   height: 56px !important;
   width: 56px !important;
-  background: linear-gradient(map-get($colors, primary ), #ca0133);
+  background: map-get($colors, light_darker );
   text-align: center;
-  color: white;
-  font-weight: bold;
-  border-radius: 8px;
+  color: map-get($colors, primary );
+  font-weight: 400;
+  border-radius: 9px;
 }

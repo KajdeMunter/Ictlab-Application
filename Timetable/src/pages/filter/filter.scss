@@ -1,3 +1,9 @@
 page-filter {
 
+  .text { font-size: 17px;}
+
+  .footer { text-align: center;  }
+  .footer .button { width: 300px; font-weight: bold; }
+  .footer .toolbar-background { background: map-get($colors, light ); }
+
 }
