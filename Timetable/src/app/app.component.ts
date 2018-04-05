@@ -7,6 +7,10 @@ import { NativeStorage } from '@ionic-native/native-storage';
 import { UserModel } from '../models/user';
 import { TabBarPage } from '../pages/tab-bar/tab-bar';
 
+import { Firebase } from '@ionic-native/firebase';
+import { ToastController } from 'ionic-angular';
+import { tap } from 'rxjs/operators';
+import { FcmProvider } from '../providers/fcm/fcm';
 
 @Component({
   templateUrl: 'app.html'
@@ -17,8 +21,9 @@ export class MyApp {
   constructor(platform: Platform,
               statusBar: StatusBar,
               splashScreen: SplashScreen,
-              private nativeStorage: NativeStorage
-            
+              private nativeStorage: NativeStorage,
+              public fcm: FcmProvider,
+              public toastCtrl: ToastController
             ) {
     platform.ready().then(() => {
 
@@ -33,6 +38,19 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
+      console.log("token " + this.fcm.getToken());
+      // Get a FCM token
+      this.fcm.getToken()
+      this.fcm.listenToNotifications().pipe(
+        tap(msg => {
+          const toast = this.toastCtrl.create({
+            message: msg.body,
+            duration: 5000
+          });
+          toast.present();
+        })
+      ).subscribe()
+
     });
   }
 }

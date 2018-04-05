@@ -20,6 +20,7 @@
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
     <platform name="android">
+        <resource-file src="google-services.json" target="google-services.json" />
         <allow-intent href="market:*" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
         <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
@@ -92,7 +93,8 @@
     <allow-navigation href="http://145.24.254.205:8100" />
     <allow-navigation href="http://145.24.254.101:8100" />
     <plugin name="cordova-plugin-advanced-http" spec="^1.11.1" />
-    <engine name="ios" spec="4.5.4" />
     <plugin name="cordova-plugin-firebase" spec="^0.1.25" />
-    <engine name="android" spec="~7.0.0" />
+    <allow-navigation href="http://192.168.178.11:8100" />
+    <engine name="ios" spec="4.5.4" />
+    <engine name="android" spec="^7.0.0" />
 </widget>

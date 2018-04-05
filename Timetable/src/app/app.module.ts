@@ -23,8 +23,18 @@ import { HTTP } from '@ionic-native/http';
 import { FilterPage } from '../pages/filter/filter';
 import { PushnotificationPage } from '../pages/pushnotification/pushnotification';
 
-import { Push, PushObject, PushOptions } from '@ionic-native/push';
 import { FcmProvider } from '../providers/fcm/fcm';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+
+const firebase = {
+  apiKey: "AIzaSyDkwHrLAWywjfbKsdogMGFn1-fWD7rhb3k",
+  authDomain: "hr-timetable.firebaseapp.com",
+  databaseURL: "https://hr-timetable.firebaseio.com",
+  projectId: "hr-timetable",
+  storageBucket: "hr-timetable.appspot.com",
+  messagingSenderId: "303796026665"
+}
 
 @NgModule({
   declarations: [
@@ -43,7 +53,9 @@ import { FcmProvider } from '../providers/fcm/fcm';
     IonicModule.forRoot(MyApp),
     HttpClientModule,
     HttpClientJsonpModule,
-    JsonpModule
+    JsonpModule,
+    AngularFireModule.initializeApp(firebase),
+    AngularFirestoreModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -59,7 +71,6 @@ import { FcmProvider } from '../providers/fcm/fcm';
   ],
   providers: [
     Firebase,
-    Push,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
