@@ -6,15 +6,12 @@ import { ApiProvider } from '../../providers/api/api';
 import { FilterPage } from '../filter/filter';
 import { RoomsPage } from '../rooms/rooms';
 import { Tabs } from 'ionic-angular/navigation/nav-interfaces';
-import { PushnotificationPage } from '../pushnotification/pushnotification'
-
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-  pushNotificationPage = PushnotificationPage;
 
   constructor(
     public navCtrl: NavController,

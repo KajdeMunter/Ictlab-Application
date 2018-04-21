@@ -21,11 +21,11 @@ import { AccountPage } from '../pages/account/account';
 import { ApiProvider } from '../providers/api/api';
 import { HTTP } from '@ionic-native/http';
 import { FilterPage } from '../pages/filter/filter';
-import { PushnotificationPage } from '../pages/pushnotification/pushnotification';
 
 import { FcmProvider } from '../providers/fcm/fcm';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { SendnotificationProvider } from '../providers/sendnotification/sendnotification';
 
 const firebase = {
   apiKey: "AIzaSyDkwHrLAWywjfbKsdogMGFn1-fWD7rhb3k",
@@ -45,8 +45,7 @@ const firebase = {
     SchedulePage,
     RoomsPage,
     AccountPage,
-    HomePage,
-    PushnotificationPage
+    HomePage
   ],
   imports: [
     BrowserModule,
@@ -66,8 +65,7 @@ const firebase = {
     SchedulePage,
     RoomsPage,
     AccountPage,
-    HomePage,
-    PushnotificationPage
+    HomePage
   ],
   providers: [
     Firebase,
@@ -78,7 +76,8 @@ const firebase = {
     NativeStorage,
     ApiProvider,
     HTTP,
-    FcmProvider
+    FcmProvider,
+    SendnotificationProvider
   ]
 })
 export class AppModule {}
