@@ -6,6 +6,7 @@ import { ApiProvider } from '../../providers/api/api';
 import { FilterPage } from '../filter/filter';
 import { RoomsPage } from '../rooms/rooms';
 import { Tabs } from 'ionic-angular/navigation/nav-interfaces';
+import { SendnotificationProvider } from '../../providers/sendnotification/sendnotification';
 
 @Component({
   selector: 'page-home',
@@ -18,8 +19,8 @@ export class HomePage {
     public loadingCtrl: LoadingController,
     public googlePlus: GooglePlus,
     public nativeStorage: NativeStorage,
-    public api: ApiProvider
-    
+    public api: ApiProvider,
+    public notification: SendnotificationProvider
   ) {
 
   }
@@ -27,6 +28,9 @@ export class HomePage {
   selectTab(index: number) { this.navCtrl.parent.select(index); }
 
   pushFilterPage() {
+    // TODO: remove this.
+    this.notification.sendNotification('Dit is een notificatie titel', 'dit is een notificatie body', 'testUser');
+
     this.navCtrl.push(FilterPage);
   }
 
