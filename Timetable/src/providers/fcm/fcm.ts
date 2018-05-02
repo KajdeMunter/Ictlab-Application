@@ -13,7 +13,7 @@ export class FcmProvider {
     public afs: AngularFirestore,
     private platform: Platform
   ) {
-    console.log('Hello FcmProvider Provider');
+    console.log('This FcmProvider should be run when the user logs in');
   }
 
   async getToken() {
@@ -41,7 +41,7 @@ export class FcmProvider {
 
     const docData = {
       token,
-      userId: 'testUser', // TODO this should eventually be the firebase auth userID
+      userId: 'testUser', // TODO: this should eventually be the auth userID
     }
 
     return devicesRef.doc(token).set(docData)
@@ -51,4 +51,14 @@ export class FcmProvider {
     return this.firebaseNative.onNotificationOpen()
   }
 
+  /*
+   * This should be called when the user logs out
+   */
+  public async removeTokenFromFirestore() {
+    // get device token
+    let token = await this.firebaseNative.getToken();
+ 
+    // Get notification collection and remove the token
+    const notificationsRef = this.afs.collection('notifications').doc(token).delete();
+  }
 }
