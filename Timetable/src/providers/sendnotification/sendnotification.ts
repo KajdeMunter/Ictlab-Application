@@ -22,6 +22,7 @@ export class SendnotificationProvider {
       title,
       body,
       userId,
+      Read: 'False',
     });
   }
 }
