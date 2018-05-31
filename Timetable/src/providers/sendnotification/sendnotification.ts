@@ -23,6 +23,7 @@ export class SendnotificationProvider {
       body,
       userId,
       Read: 'False',
+      Date: new Date(),
     });
   }
 }
