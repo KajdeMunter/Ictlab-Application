@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { Platform, Tab } from 'ionic-angular';
+import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
 import { NativeStorage } from '@ionic-native/native-storage';
-import { UserModel } from '../models/user';
 import { TabBarPage } from '../pages/tab-bar/tab-bar';
 
 
@@ -32,6 +31,8 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
+      statusBar.overlaysWebView(false);
+      statusBar.backgroundColorByHexString('f7f7f7');
       splashScreen.hide();
     });
   }

@@ -4,12 +4,13 @@ $app-direction: ltr;
 
 $colors: (
   primary:    #cc0033,
-  primary_darker: #8f0326,
-  light:      #f4f4f4,
+  primary_darker: #880828,
+  light:      #f7f7f7,
   light_darker: #ebebeb,
   secondary:  #32db64,
   danger:     #f53d3d,
-  dark:       #222
+  dark:       #222,
+  white: #ffffff
 );
 
 @import "ionic.theme.default";

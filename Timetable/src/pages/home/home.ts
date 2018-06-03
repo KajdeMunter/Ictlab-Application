@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController } from 'ionic-angular';
+import { NavController, LoadingController, ModalController } from 'ionic-angular';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { ApiProvider } from '../../providers/api/api';
-import { FilterPage } from '../filter/filter';
-import { RoomsPage } from '../rooms/rooms';
+import { AccountPage } from '../account/account';
 
 
 @Component({
@@ -18,16 +17,18 @@ export class HomePage {
     public loadingCtrl: LoadingController,
     public googlePlus: GooglePlus,
     public nativeStorage: NativeStorage,
-    public api: ApiProvider
+    public api: ApiProvider,
+    private modalCtrl: ModalController
     
   ) {
 
   }
 
   selectTab(index: number) { this.navCtrl.parent.select(index); }
-
-  pushFilterPage() {
-    this.navCtrl.push(FilterPage);
+  
+  presentAccountModal() {
+    let modal = this.modalCtrl.create(AccountPage);
+    modal.present();
   }
 
 }

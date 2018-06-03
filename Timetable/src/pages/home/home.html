@@ -1,4 +1,86 @@
 <ion-content>
+
+  <div class="container">
+
+    <div class="custom-header">
+      <h2>Monday 4 june</h2>
+      <h1>Today</h1>
+      <ion-icon name="ios-contact" (click)="presentAccountModal()"></ion-icon>
+    </div>
+
+    <div class="home-item" (click)="selectTab(1)">
+      <div class="thumbnail">
+        <ion-icon name="logo-buffer"></ion-icon>
+      </div>
+      <h2>In need of a room?</h2>
+      <h3>Find the suitable classroom for you</h3>
+    </div>
+    <div class="home-item" (click)="selectTab(2)">
+      <div class="thumbnail">
+        <ion-icon name="ios-bookmarks"></ion-icon>
+      </div>
+      <h2>This week's schedule</h2>
+      <h3>All your appointments in one simple overview</h3>
+    </div>
+  </div>
+
+</ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<ion-content>
   <div class="main-container">
     <div class="image">
       <img src='./assets/imgs/hro.png'>
@@ -9,7 +91,7 @@
       </button>
   </div>
   <div class="slide-container">
-    <div class="rooms-slider" (click)="selectTab(2)">
+    <div class="rooms-slider" (click)="showRooms()">
         <div class="text">Available Rooms</div>
       <ion-slides slidesPerView="1.2" spaceBetween="1">
         <ion-slide>
@@ -26,22 +108,23 @@
         </ion-slide>
       </ion-slides>
     </div>
-    <div class="schedule-slider">
+    <div class="schedule-slider" (click)="selectTab(1)">
         <div class="text margtop">Today's Schedule</div>
       <ion-slides slidesPerView="1.2" spaceBetween="1">
         <ion-slide>
-          <div class="card">H.4.308</div>
+          <div class="card">INFSEN02-1</div>
         </ion-slide>
         <ion-slide>
-          <div class="card">WD.1.016</div>
+          <div class="card">INFDTA02-1</div>
         </ion-slide>
         <ion-slide>
-          <div class="card">H.1.108</div>
+          <div class="card">INFSKL04-3</div>
         </ion-slide>
         <ion-slide>
-          <div class="card">H.3.401</div>
+          <div class="card">INFSLC01-3</div>
         </ion-slide>
       </ion-slides>
     </div>
   </div>
 </ion-content>
+-->

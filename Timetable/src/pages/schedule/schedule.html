@@ -1,60 +1,25 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>Schedule</ion-title>
-  </ion-navbar>
-</ion-header>
-
 <ion-content>
-  <ion-list>
-    <div class="text">Monday</div>
-    <ion-item>
-      <div class="thumbnail" item-start>
-        <div class="start">00:00</div>
-        <div class="end">00:00</div>
-      </div>
-      <h2>Item</h2>
-      <p>Item Paragraph</p>
-      <p item-end>TEACHER</p>
-    </ion-item>
-    <ion-item>
-      <div class="thumbnail" item-start>
-        <div class="start">00:00</div>
-        <div class="end">00:00</div>
-      </div>
-      <h2>Item</h2>
-      <p>Item Paragraph</p>
-      <p item-end>TEACHER</p>
-    </ion-item>
-    <ion-item>
-      <div class="thumbnail" item-start>
-        <div class="start">00:00</div>
-        <div class="end">00:00</div>
-      </div>
-      <h2>Item</h2>
-      <p>Item Paragraph</p>
-      <p item-end>TEACHER</p>
-    </ion-item>
-  </ion-list>
-  <ion-list>
-    <div class="text">Tuesday</div>
-    <ion-item>
-      <div class="thumbnail" item-start>
-        <div class="start">00:00</div>
-        <div class="end">00:00</div>
-      </div>
-      <h2>Item</h2>
-      <p>Item Paragraph</p>
-      <p item-end>TEACHER</p>
-    </ion-item>
-    <ion-item>
-      <div class="thumbnail" item-start>
-        <div class="start">00:00</div>
-        <div class="end">00:00</div>
-      </div>
-      <h2>Item</h2>
-      <p>Item Paragraph</p>
-      <p item-end>TEACHER</p>
-    </ion-item>
-  </ion-list>
+
+  <div class="container">
+
+    <div class="custom-header">
+      <h2>Your appointments</h2>
+      <h1>Schedule</h1>
+      <ion-icon name="ios-navigate" (click)="filterScheduleType()"></ion-icon>
+    </div>
+
+    <div *ngFor="let day of schedule" class="appointment">
+      <h2> {{ day.weekDay | day }}</h2>
+      <ion-list no-lines>
+        <ion-item *ngFor="let lesson of day.lessons" (click)="showLessonInfo(lesson)">
+          <ion-icon name="ios-school-outline" color="primary" item-start></ion-icon>
+          <h3> {{ lesson.code }} </h3>
+          <h3> {{ lesson.startBlock | time }} -  {{ lesson.endBlock | time }}</h3>
+          <ion-badge item-end>{{ lesson.room }}</ion-badge>
+        </ion-item>
+      </ion-list>
+    </div>
+
+  </div>
 
 </ion-content>

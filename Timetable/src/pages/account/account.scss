@@ -1,24 +1,8 @@
 page-account {
 
-  .text {
-    font-size: 20px;
-    font-weight: bold;
-    padding-left: 16px;
-    padding-top: 16px;
-    padding-bottom: 8px;
+  .list {
+    margin-top: 16px;
+    margin-bottom: 32px;
   }
-
-  .account-container {
-    border: 0.55px solid #c8c7cc;
-    border-radius: 6px;
-    margin-right: 16px;
-    margin-left: 16px;
-  }
-
-  .item { border: 0.55px solid #c8c7cc !important}
-  .item:first-child { border-top-right-radius: 6px; border-top-left-radius: 6px; }
-  .item:last-child { border-bottom-right-radius: 6px; border-bottom-left-radius: 6px; }
-  .button { border: none !important;}
-  ion-label { margin-left: 12px !important; }
 
 }
