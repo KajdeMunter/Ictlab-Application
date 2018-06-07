@@ -12,8 +12,6 @@ export class UserModel {
     private idToken: string;
     private expiryDateToken: any;
 
-    private api: ApiProvider;
-
     constructor(res, callback){
 
 
@@ -33,20 +31,6 @@ export class UserModel {
             console.log("Actual date:", JSON.stringify(this.expiryDateToken))
             callback(this);
         });
-    }
-
-
-    serialize() { 
-        return [
-            this.firstName,
-            this.lastName,
-            this.fullName,
-            this.email,
-            this.imageUrl,
-            this.id,
-            this.idToken,
-            this.expiryDateToken
-        ]  
     }
 
     getFirstName(): string { return this.firstName; }

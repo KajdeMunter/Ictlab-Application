@@ -6,11 +6,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { Firebase } from '@ionic-native/firebase'
 
 import { GooglePlus } from '@ionic-native/google-plus';
-import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
-import {JsonpModule} from '@angular/http';
 
 import { MyApp } from './app.component';
-
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { TabBarPage } from '../pages/tab-bar/tab-bar';
@@ -20,7 +17,14 @@ import { RoomsPage } from '../pages/rooms/rooms';
 import { AccountPage } from '../pages/account/account';
 import { ApiProvider } from '../providers/api/api';
 import { HTTP } from '@ionic-native/http';
-import { FilterPage } from '../pages/filter/filter';
+import { DatePicker } from '@ionic-native/date-picker';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { BookingsPage } from '../pages/bookings/bookings';
+import { ReportPage } from '../pages/report/report';
+import { ProfilePage } from '../pages/profile/profile';
+import { AboutPage } from '../pages/about/about';
+import { DayPipe } from '../pipes/day/day';
+import { TimePipe } from '../pipes/time/time';
 
 import { FcmProvider } from '../providers/fcm/fcm';
 import { AngularFireModule } from 'angularfire2';
@@ -45,7 +49,12 @@ const firebase = {
     SchedulePage,
     RoomsPage,
     AccountPage,
-    HomePage
+    BookingsPage,
+    ReportPage,
+    ProfilePage,
+    AboutPage,
+    DayPipe,
+    TimePipe
   ],
   imports: [
     BrowserModule,
@@ -65,7 +74,10 @@ const firebase = {
     SchedulePage,
     RoomsPage,
     AccountPage,
-    HomePage
+    BookingsPage,
+    ReportPage,
+    ProfilePage,
+    AboutPage
   ],
   providers: [
     Firebase,
@@ -76,6 +88,8 @@ const firebase = {
     NativeStorage,
     ApiProvider,
     HTTP,
+    DatePicker,
+    InAppBrowser
     FcmProvider,
     SendnotificationProvider
   ]

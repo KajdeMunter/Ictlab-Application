@@ -1,58 +1,120 @@
-.content { background: map-get($colors, light ) }
-.bar-button { color: white !important; }
-.list, .item { background: transparent; }
-.toolbar-background { background-color: map-get($colors, primary ); }
-.toolbar-title { color: #ffffff; }
+.content { background: map-get($colors, light )}
+.container { padding: 0 20px; }
 
-.center { text-align: center !important; }
+  .custom-header {
+    padding-top: 26px;
+    height: 100px;
+    border-bottom: 1px solid rgb(221, 219, 219);
+    h1 { 
+      font-size: 34px;
+      font-weight: 700;
+      padding: 0;
+      margin: 0;
+      float: left;
+    }
+    h2 { 
+      text-transform: uppercase;
+      color: #a1a1a1;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 0;
+      margin: 0;
+      height: 20px;
+    }
+    h3 {
+      margin: 0;
+      padding: 0;
+    }
+    img {
+      float: right;
+      width: 34px;
+      margin-top: 6px !important;
+      border-radius: 50%;
+    }
+    ion-icon {
+      font-size: 34px;
+      float: right;
+      margin-top: 7px !important;
+      color: map-get($colors, primary )
+    }
+  }
 
-.padding {padding: 16px; }
-.padleft { padding-left: 16px; }
-.padright { padding-right: 16px; }
-.padtop { padding-top: 16px; }
-.padbottom { padding-bottom: 16px; }
-
-.padlefthalf { padding-left: 8px; }
-.padrighthalf { padding-right: 8px; }
-.padtophalf { padding-top: 8px; }
-.padbottomhalf { padding-bottom: 8px; }
-
-.margin {margin: 16px; }
-.margleft { margin-left: 16px; }
-.margright { margin-right: 16px; }
-.margtop { margin-top: 16px; }
-.margbottom { margin-bottom: 16px; }
-
-.marglefthalf { margin-left: 8px; }
-.margrighthalf { margin-right: 8px; }
-.margtophalf { margin-top: 8px; }
-.margbottomhalf { margin-bottom: 8px; }
 
 
 
-.list { margin-bottom: 6px; }
 
-.text {
-  font-size: 20px;
-  font-weight: bold;
-  padding-left: 16px;
-  padding-top: 16px;
-  padding-bottom: 0px;
-}
 
-.list-header {
-  font-size: 24px;
-  font-weight: bold;
-  text-transform: capitalize !important;
-  color: #000000;
-}
 
-.thumbnail {
-  height: 56px !important;
-  width: 56px !important;
-  background: map-get($colors, light_darker );
-  text-align: center;
-  color: map-get($colors, primary );
-  font-weight: 400;
-  border-radius: 9px;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//.content { background: map-get($colors, light ) }
+//.bar-button { color: white !important; }
+//.list, .item { background: transparent; }
+//.toolbar-background { background-color: map-get($colors, primary ); }
+//.toolbar-title { color: #ffffff; }
+//
+//.center { text-align: center !important; }
+//
+//.padding {padding: 16px; }
+//.padleft { padding-left: 16px; }
+//.padright { padding-right: 16px; }
+//.padtop { padding-top: 16px; }
+//.padbottom { padding-bottom: 16px; }
+//
+//.padlefthalf { padding-left: 8px; }
+//.padrighthalf { padding-right: 8px; }
+//.padtophalf { padding-top: 8px; }
+//.padbottomhalf { padding-bottom: 8px; }
+//
+//.margin {margin: 16px; }
+//.margleft { margin-left: 16px; }
+//.margright { margin-right: 16px; }
+//.margtop { margin-top: 16px; }
+//.margbottom { margin-bottom: 16px; }
+//
+//.marglefthalf { margin-left: 8px; }
+//.margrighthalf { margin-right: 8px; }
+//.margtophalf { margin-top: 8px; }
+//.margbottomhalf { margin-bottom: 8px; }
+//
+//
+//
+//.list { margin-bottom: 6px; }
+//
+//.text {
+//  font-size: 20px;
+//  font-weight: bold;
+//  padding-left: 16px;
+//  padding-top: 16px;
+//  padding-bottom: 0px;
+//}
+//
+//.list-header {
+//  font-size: 24px;
+//  font-weight: bold;
+//  text-transform: capitalize !important;
+//  color: #000000;
+//}
+//
+//.thumbnail {
+//  height: 56px !important;
+//  width: 56px !important;
+//  text-align: center;
+//  font-weight: 400;
+//  border-radius: 9px;
+//}

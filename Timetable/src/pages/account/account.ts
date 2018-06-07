@@ -3,10 +3,11 @@ import { App, IonicPage, NavController, NavParams, LoadingController } from 'ion
 import { GooglePlus } from '@ionic-native/google-plus';
 import { LoginPage } from '../login/login';
 import { NativeStorage } from '@ionic-native/native-storage';
-import { HttpClient } from '@angular/common/http';
-import 'rxjs/add/operator/map';
-import { Jsonp } from '@angular/http';
 import * as config from '../../app/config';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { AboutPage } from '../about/about';
+import { ReportPage } from '../report/report';
+import { BookingsPage } from '../bookings/bookings';
 
 
 @IonicPage()
@@ -25,10 +26,16 @@ export class AccountPage {
     public navParams: NavParams,
     public googlePlus: GooglePlus,
     public nativeStorage: NativeStorage,
-    private http: HttpClient,
-    private jsonp: Jsonp
-
+    public iab: InAppBrowser
   ) { }
+
+  dismiss() {
+    this.navCtrl.pop();
+  }
+
+  aboutPage() {this.navCtrl.push(AboutPage); }
+  reportsPage() {this.navCtrl.push(ReportPage); }
+  bookingsPage() { this.navCtrl.push(BookingsPage); }
 
   logout() {
     let loading = this.loadingCtrl.create({ content: config.logout });

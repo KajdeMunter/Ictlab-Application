@@ -1,10 +1,120 @@
 page-rooms {
 
-  .floor {
-    padding-top: 16px;
-    font-size: 18px;
-    font-weight: bold;
+  .room {
+    background: #ffffff;
+    display: block;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 1px 25px #d6d6d6;
+    h2 {
+      font-weight: 600;
+      font-size: 20px;
+      padding-left: 16px;
+      padding-top: 8px;
+      margin-bottom: 4px;
+    }
+    .item { border-radius: 10px; background: transparent;}
+    .item:active { background: #d8d8d8 }
+    .list { margin: 0; } 
+    .badge { 
+      color: map-get($colors , primary ); 
+      background: map-get($colors, light_darker )
+    }
   }
 
+  .filter {
+    border-radius: 8px;
+    margin-bottom: 20px;
+    background: linear-gradient(  top , map-get($colors , primary ), #810121);
+    overflow: hidden !important;
+    color: #ffffff;   
+    p {
+      padding-left: 14px;
+      padding-bottom: 10px;
+      margin: 0;
+      font-weight: 500;
+    }
+    h3 {
+      margin: 0px;
+      padding-top: 14px;
+      padding-left: 14px;
+      padding-bottom: 8px;
+      font-weight: 600;
+      font-size: 18px;
+      width: 100%;
+    }
+    .button {
+      border-radius: 20px;
+      height: 25px;
+      font-size: 14px;
+      color: #810121;
+      font-weight: 400;
+      margin-left: 16px;
+      margin-right: -8px;
+    }
+    [col-1] {
+      max-width: 38px;
+      width: 38px;
+    }
+    ion-col { 
+      margin-top: -6px;
+      margin-left: -4px; 
+      ion-icon { font-weight: 600; }
+    }
+    ion-col:nth-child(2) {
+      font-size: 24px;
+      font-weight: 600;
+    }
+    .search-wrapper {
+      padding-top: 16px;
+      .search-btn {
+        border-radius: 46px;
+        height: 46px;
+        font-size: 18px;
+        border: 1.3px solid map-get($colors, light );
+        font-weight: 600;
+        color: map-get($colors, light )
+      }
+    }
+  }
+
+  .active {
+    animation: active 0.15s linear;
+    height: 315px;
+  }
+
+  .inactive {
+    animation: inactive 0.15s linear;
+    height: 0px;
+  }
+
+  @keyframes active {
+    0% { height: 0px; }
+    100% { height: 315px; }
+  }
+  @keyframes inactive {
+    0% { height: 315px; }
+    100% { height: 0px; }
+  }
+
+
+
+  //.toolbar { text-align: center;  }
+  //.toolbar-background { background-color:  map-get($colors, primary ); }
+  //.toolbar-title { color: #ffffff !important }
+  //.toolbar .button { width: 300px; font-weight: bold; color: map-get($colors, primary ); }
+  //
+  //.room-id {
+  //  padding-top: 15px;
+  //  font-size: 18px;
+  //  font-weight: bold;
+  //}
+//
+  //.thumbnail {
+  //  background: linear-gradient(top right, map-get($colors, primary ), map-get($colors, primary_darker ));
+  //  color: #ffffff;
+  //}
+//
+  //.footer .toolbar-background { background: map-get($colors, light ); }
 
 }

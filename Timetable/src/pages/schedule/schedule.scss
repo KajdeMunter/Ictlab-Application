@@ -1,14 +1,25 @@
 page-schedule {
 
-  .start {
-    height: 28px;
-    padding-top: 8px;
-    font-size: 15px;
+  .appointment {
+    background: #ffffff;
+    display: block;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0px 1px 25px #d6d6d6;
+    h2 {
+      font-weight: 600;
+      padding-left: 16px;
+      padding-top: 8px;
+      margin-bottom: 8px;
+      font-size: 20px;
+    }
+    .item { border-radius: 10px; background: transparent; }
+    .list { margin: 0; } 
+    .badge { 
+      color: map-get($colors , primary ); 
+      background: map-get($colors, light_darker )
+    }
   }
-  .end {
-    font-size: 15px;
-  }
-
 
 
 }

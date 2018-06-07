@@ -1,44 +1,92 @@
-
-<ion-header>
-  <ion-navbar>
-    <ion-title>Rooms</ion-title>
-  </ion-navbar>
-</ion-header>
 <ion-content>
-<ion-list>
-  <div class="text">Available Rooms</div>
-  <ion-item>
-    <div class="thumbnail" item-start>
-      <div class="floor">H4</div>
+
+  <div class="container">
+
+    <div class="custom-header">
+      <h2>Allocate a room</h2>
+      <h1>Rooms</h1>
+      <ion-icon *ngIf="clicked == false || clicked == null" name="ios-arrow-dropdown-circle" (click)="activateFilter()"></ion-icon>
+      <ion-icon *ngIf="clicked == true" name="ios-close-circle" (click)="activateFilter()"></ion-icon>
     </div>
-    <h2>Item</h2>
-    <p>Item Paragraph</p>
-    <button ion-button item-end>Book</button>
-  </ion-item>
-  <ion-item>
-    <div class="thumbnail" item-start>
-      <div class="floor">WD4</div>
+
+    <div class="filter" [class.active]="clicked == true" [class.inactive]="clicked == false">
+      <div *ngIf="clicked == true">
+        <h3>When do you need the room?</h3>
+        <button ion-button color="light" (click)="pickDate()">{{ date }}</button>
+        <h3>Your preffered time</h3>
+        <button ion-button color="light" (click)="showTimeRadioAlert(0)">{{ timeStart }}</button>
+        <button ion-button color="light" (click)="showTimeRadioAlert(1)">{{ timeEnd }}</button>
+        <h3>Guests</h3>
+        <ion-row>
+          <ion-col col-3>
+            <button ion-button color="light" (click)="calcGuests(-1)">
+              <ion-icon name="remove"></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col col-1>{{ guests }}</ion-col>
+          <ion-col col-2>
+            <button ion-button color="light" (click)="calcGuests(1)">
+              <ion-icon name="add"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+        <div class="search-wrapper">
+          <button ion-button outline color="light" class="search-btn" (click)="applyFilter()">Filter Rooms</button>
+        </div>
+      </div>
     </div>
-    <h2>Item</h2>
-    <p>Item Paragraph</p>
-    <button ion-button item-end>Book</button>
-  </ion-item>
-  <ion-item>
-    <div class="thumbnail" item-start>
-      <div class="floor">H4</div>
+    <!--
+    <div class="room" (click)="confirmRoom()">
+        <h2>Best Match</h2>
+        <ion-list no-lines>
+          <ion-item>
+            <ion-icon name="ios-bulb-outline" color="primary" item-start></ion-icon>
+            <h3>H.4.308</h3>
+            <h3>11:00 - 14:00</h3>
+            <ion-badge item-end>70min</ion-badge>
+          </ion-item>
+        </ion-list>
+      </div>
+      -->
+    <div class="room" (click)="confirmRoom()">
+      <h2>Available Rooms</h2>
+      <ion-list no-lines>
+        <ion-item *ngFor="let d of dummy">
+          <ion-icon name="ios-pin-outline" color="primary" item-start></ion-icon>
+          <h3>H.4.308</h3>
+          <h3>12:00 - 13:00</h3>
+          <ion-badge item-end>70min</ion-badge>
+        </ion-item>
+      </ion-list>
     </div>
-    <h2>Item</h2>
-    <p>Item Paragraph</p>
-    <button ion-button item-end>Book</button>
-  </ion-item>
-  <ion-item>
-    <div class="thumbnail" item-start>
-      <div class="floor">H4</div>
-    </div>
-    <h2>Item</h2>
-    <p>Item Paragraph</p>
-    <button ion-button item-end>Book</button>
-  </ion-item>
-  
-</ion-list>
+
+  </div>
+
 </ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -31,13 +31,13 @@ export class LoginPage {
 
     this.googlePlus.login({
       'webClientId': config.webClientId,
-      'offline': false
+      'offline': true
     })
     .then((res) => {
+      //Call naar Dylan
       loading.dismiss().then(() => {
         this.navCtrl.setRoot(TabBarPage, {}, {animate: true, direction: 'forward'})
       })
-
       let user = new UserModel(res, function(completeUser){
       console.log(completeUser.fullName);
       let nativeStorage = new NativeStorage();
