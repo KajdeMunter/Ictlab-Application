@@ -23,6 +23,7 @@ import { BookingsPage } from '../pages/bookings/bookings';
 import { ReportPage } from '../pages/report/report';
 import { ProfilePage } from '../pages/profile/profile';
 import { AboutPage } from '../pages/about/about';
+import { IncidentPage } from '../pages/incident/incident';
 import { DayPipe } from '../pipes/day/day';
 import { TimePipe } from '../pipes/time/time';
 
@@ -30,6 +31,8 @@ import { FcmProvider } from '../providers/fcm/fcm';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { SendnotificationProvider } from '../providers/sendnotification/sendnotification';
+import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
+
 
 const firebase = {
   apiKey: "AIzaSyDkwHrLAWywjfbKsdogMGFn1-fWD7rhb3k",
@@ -53,6 +56,7 @@ const firebase = {
     ReportPage,
     ProfilePage,
     AboutPage,
+    IncidentPage,
     DayPipe,
     TimePipe
   ],
@@ -61,7 +65,6 @@ const firebase = {
     IonicModule.forRoot(MyApp),
     HttpClientModule,
     HttpClientJsonpModule,
-    JsonpModule,
     AngularFireModule.initializeApp(firebase),
     AngularFirestoreModule,
   ],
@@ -77,6 +80,7 @@ const firebase = {
     BookingsPage,
     ReportPage,
     ProfilePage,
+    IncidentPage,
     AboutPage
   ],
   providers: [
@@ -89,7 +93,7 @@ const firebase = {
     ApiProvider,
     HTTP,
     DatePicker,
-    InAppBrowser
+    InAppBrowser,
     FcmProvider,
     SendnotificationProvider
   ]

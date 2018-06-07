@@ -4,7 +4,6 @@ import { GooglePlus } from '@ionic-native/google-plus';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { ApiProvider } from '../../providers/api/api';
 import { AccountPage } from '../account/account';
-import { SendnotificationProvider } from '../../providers/sendnotification/sendnotification';
 
 @Component({
   selector: 'page-home',
