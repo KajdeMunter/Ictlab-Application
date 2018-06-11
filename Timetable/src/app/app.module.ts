@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { Firebase } from '@ionic-native/firebase'
 
 import { GooglePlus } from '@ionic-native/google-plus';
 
@@ -22,8 +23,25 @@ import { BookingsPage } from '../pages/bookings/bookings';
 import { ReportPage } from '../pages/report/report';
 import { ProfilePage } from '../pages/profile/profile';
 import { AboutPage } from '../pages/about/about';
+import { IncidentPage } from '../pages/incident/incident';
 import { DayPipe } from '../pipes/day/day';
 import { TimePipe } from '../pipes/time/time';
+
+import { FcmProvider } from '../providers/fcm/fcm';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { SendnotificationProvider } from '../providers/sendnotification/sendnotification';
+import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
+
+
+const firebase = {
+  apiKey: "AIzaSyDkwHrLAWywjfbKsdogMGFn1-fWD7rhb3k",
+  authDomain: "hr-timetable.firebaseapp.com",
+  databaseURL: "https://hr-timetable.firebaseio.com",
+  projectId: "hr-timetable",
+  storageBucket: "hr-timetable.appspot.com",
+  messagingSenderId: "303796026665"
+}
 
 @NgModule({
   declarations: [
@@ -38,12 +56,17 @@ import { TimePipe } from '../pipes/time/time';
     ReportPage,
     ProfilePage,
     AboutPage,
+    IncidentPage,
     DayPipe,
     TimePipe
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    HttpClientModule,
+    HttpClientJsonpModule,
+    AngularFireModule.initializeApp(firebase),
+    AngularFirestoreModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -57,9 +80,11 @@ import { TimePipe } from '../pipes/time/time';
     BookingsPage,
     ReportPage,
     ProfilePage,
+    IncidentPage,
     AboutPage
   ],
   providers: [
+    Firebase,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
@@ -68,7 +93,9 @@ import { TimePipe } from '../pipes/time/time';
     ApiProvider,
     HTTP,
     DatePicker,
-    InAppBrowser
+    InAppBrowser,
+    FcmProvider,
+    SendnotificationProvider
   ]
 })
 export class AppModule {}

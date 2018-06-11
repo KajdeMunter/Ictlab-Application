@@ -1,0 +1,70 @@
+{
+  "project_info": {
+    "project_number": "303796026665",
+    "firebase_url": "https://hr-timetable.firebaseio.com",
+    "project_id": "hr-timetable",
+    "storage_bucket": "hr-timetable.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:303796026665:android:acdaa9c3f1c0778a",
+        "android_client_info": {
+          "package_name": "ger.ben.timetable"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "303796026665-1nuf63mtd8jiih07beq6crf6hvu4rdgk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ger.ben.timetable",
+            "certificate_hash": "6d89d20102268964f178e417b41ed935057d7811"
+          }
+        },
+        {
+          "client_id": "303796026665-406df4fcjsuauq4g9bg30if5mq2736jq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ger.ben.timetable",
+            "certificate_hash": "2d4050538bcd39124058cea48495f9abd16d60cc"
+          }
+        },
+        {
+          "client_id": "303796026665-lpn5j56iobj5o43th969jgea2vhnc8a4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgl_pcaqoo5Q3m55j-qu9tVNdPhsYdou4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "303796026665-lpn5j56iobj5o43th969jgea2vhnc8a4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "303796026665-ecpc4qsd2umctrb7bl52lm041n99voh0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "ger.ben.timetabl"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

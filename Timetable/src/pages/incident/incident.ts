@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { SendnotificationProvider } from '../../providers/sendnotification/sendnotification';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { ToastController } from 'ionic-angular';
 
 /**
  * Generated class for the IncidentPage page.
@@ -15,11 +18,74 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class IncidentPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  private incident: FormGroup;
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private alertCtrl: AlertController,
+    private notification: SendnotificationProvider,
+    private formBuilder: FormBuilder,
+    private toastCtrl: ToastController,
+  ) {
+    this.incident = this.formBuilder.group({
+      room: ['w000', Validators.required],
+      description: [''],
+    });
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad IncidentPage');
+  }
+
+  pickRoom() {
+    let alert = this.alertCtrl.create();
+    alert.setTitle('Room');
+
+    alert.addInput({
+      type: 'radio',
+      label: 'h4.318',
+      value: 'h4.318',
+      checked: false
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: 'h5.318',
+      value: 'h5.318',
+      checked: false
+    });
+
+    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'OK',
+      handler: data => {
+        if (data != null) {
+          this.incident.value.room = data;
+        }
+      }
+    });
+    alert.present();
+  }
+
+  sendIncident() {
+    // TODO userID
+    this.notification.sendNotification('Incident report in room ' + this.incident.value.room, this.incident.value.description, 'dashboard');
+    this.presentToast();
+  }
+
+  presentToast() {
+    let toast = this.toastCtrl.create({
+      message: 'Report succesfully sent',
+      duration: 3000,
+      position: 'middle'
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
   }
 
 }
