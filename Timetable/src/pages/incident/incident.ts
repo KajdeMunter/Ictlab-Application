@@ -29,8 +29,8 @@ export class IncidentPage {
     private toastCtrl: ToastController,
   ) {
     this.incident = this.formBuilder.group({
-      room: ['w000', Validators.required],
-      description: [''],
+      room: ['Room', Validators.required],
+      description: ['', Validators.required],
     });
   }
 
@@ -70,7 +70,7 @@ export class IncidentPage {
 
   sendIncident() {
     // TODO userID
-    this.notification.sendNotification('Incident report in room ' + this.incident.value.room, this.incident.value.description, 'dashboard');
+    this.notification.sendNotification(this.incident.value.room, this.incident.value.description, 'dashboard');
     this.presentToast();
   }
 
