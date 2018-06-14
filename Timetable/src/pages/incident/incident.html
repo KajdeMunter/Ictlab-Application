@@ -1,18 +1,23 @@
-<!--
-  Generated template for the IncidentPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Incident</ion-title>
+    <ion-title>Report an incident</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <form [formGroup]="incident" (ngSubmit)="sendIncident()">
+    <ion-item>
+      <button type="button" ion-button round outline color="primary" (click)="pickRoom()">{{ incident.value.room }}</button>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" stacked>Probleem</ion-label>
+      <ion-input required type="text" formControlName="description" placeholder="Description"></ion-input>
+    </ion-item>
+    <div class="incidentbutton">
+      <button ion-item type="submit" [disabled]="!incident.valid">Submit</button>
+    </div>
+  </form>
 </ion-content>

@@ -6,7 +6,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
 import * as config from '../../app/config';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { AboutPage } from '../about/about';
-import { ReportPage } from '../report/report';
+import { IncidentPage } from '../incident/incident';
 import { BookingsPage } from '../bookings/bookings';
 
 
@@ -34,7 +34,7 @@ export class AccountPage {
   }
 
   aboutPage() {this.navCtrl.push(AboutPage); }
-  reportsPage() {this.navCtrl.push(ReportPage); }
+  incidentPage() {this.navCtrl.push(IncidentPage); }
   bookingsPage() { this.navCtrl.push(BookingsPage); }
 
   logout() {

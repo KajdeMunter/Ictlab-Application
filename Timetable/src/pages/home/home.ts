@@ -5,7 +5,6 @@ import { NativeStorage } from '@ionic-native/native-storage';
 import { ApiProvider } from '../../providers/api/api';
 import { AccountPage } from '../account/account';
 
-
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
