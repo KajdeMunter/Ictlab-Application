@@ -3,6 +3,9 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { SendnotificationProvider } from '../../providers/sendnotification/sendnotification';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ToastController } from 'ionic-angular';
+import { HTTP } from '@ionic-native/http';
+import { ApiProvider } from '../../providers/api/api';
+import * as config from '../../app/config';
 
 /**
  * Generated class for the IncidentPage page.
@@ -20,6 +23,7 @@ export class IncidentPage {
 
   private incident: FormGroup;
   private selectedRoom: string;
+  rooms;
 
   constructor(
     public navCtrl: NavController,
@@ -28,10 +32,27 @@ export class IncidentPage {
     private notification: SendnotificationProvider,
     private formBuilder: FormBuilder,
     private toastCtrl: ToastController,
+    private http: HTTP,
+    private api: ApiProvider
   ) {
+    this.setRooms();
     this.incident = this.formBuilder.group({
       description: ['', Validators.required],
     });
+  }
+
+  public setRooms() {
+    this.api.getRooms(this.http).then(response => {
+      this.rooms = response;
+      this.rooms = this.rooms.sort((a, b) => a.getId() < b.getId() ? -1 : a.getId() > b.getId() ? 1 : 0);
+    })
+      .catch((error) => {
+        let alert = this.alertCtrl.create();
+        alert.setTitle(config.oops_title);
+        alert.setMessage(config.oops_message);
+        alert.addButton('OK');
+        alert.present();
+      })
   }
 
   ionViewDidLoad() {
@@ -42,19 +63,14 @@ export class IncidentPage {
     let alert = this.alertCtrl.create();
     alert.setTitle('Room');
 
-    alert.addInput({
-      type: 'radio',
-      label: 'h4.318',
-      value: 'h4.318',
-      checked: false
-    });
-
-    alert.addInput({
-      type: 'radio',
-      label: 'h5.318',
-      value: 'h5.318',
-      checked: false
-    });
+    this.rooms.forEach(room => {
+      alert.addInput({
+        type: 'radio',
+        label: room.getId(),
+        value: room.getId(),
+        checked: false
+      });
+    })
 
     alert.addButton('Cancel');
     alert.addButton({
