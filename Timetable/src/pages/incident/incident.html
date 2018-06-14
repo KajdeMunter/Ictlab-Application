@@ -8,16 +8,15 @@
 
 
 <ion-content padding>
+  <ion-item>
+    <button required type="button" ion-button round outline color="primary" (click)="pickRoom()">Room: {{ selectedRoom }}</button>
+  </ion-item>
+
   <form [formGroup]="incident" (ngSubmit)="sendIncident()">
     <ion-item>
-      <button type="button" ion-button round outline color="primary" (click)="pickRoom()">{{ incident.value.room }}</button>
+      <ion-label color="primary" stacked>Problem</ion-label>
+      <ion-textarea required type="text" formControlName="description" placeholder="Description" autocomplete="on" autocorrect="on"></ion-textarea>
     </ion-item>
-    <ion-item>
-      <ion-label color="primary" stacked>Probleem</ion-label>
-      <ion-input required type="text" formControlName="description" placeholder="Description"></ion-input>
-    </ion-item>
-    <div class="incidentbutton">
-      <button ion-item type="submit" [disabled]="!incident.valid">Submit</button>
-    </div>
+    <button ion-item type="submit" [disabled]="!incident.valid">Submit</button>
   </form>
 </ion-content>
