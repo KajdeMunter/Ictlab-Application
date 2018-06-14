@@ -95,7 +95,7 @@ const firebase = {
     HTTP,
     DatePicker,
     InAppBrowser,
-    AlertProvider
+    AlertProvider,
     FcmProvider,
     SendnotificationProvider
   ]
