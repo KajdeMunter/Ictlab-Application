@@ -19,6 +19,7 @@ import { ToastController } from 'ionic-angular';
 export class IncidentPage {
 
   private incident: FormGroup;
+  private selectedRoom: string;
 
   constructor(
     public navCtrl: NavController,
@@ -29,8 +30,7 @@ export class IncidentPage {
     private toastCtrl: ToastController,
   ) {
     this.incident = this.formBuilder.group({
-      room: ['w000', Validators.required],
-      description: [''],
+      description: ['', Validators.required],
     });
   }
 
@@ -61,7 +61,7 @@ export class IncidentPage {
       text: 'OK',
       handler: data => {
         if (data != null) {
-          this.incident.value.room = data;
+          this.selectedRoom = data;
         }
       }
     });
@@ -70,7 +70,7 @@ export class IncidentPage {
 
   sendIncident() {
     // TODO userID
-    this.notification.sendNotification('Incident report in room ' + this.incident.value.room, this.incident.value.description, 'dashboard');
+    this.notification.sendNotification(this.selectedRoom, this.incident.value.description, 'dashboard');
     this.presentToast();
   }
 
@@ -78,7 +78,7 @@ export class IncidentPage {
     let toast = this.toastCtrl.create({
       message: 'Report succesfully sent',
       duration: 3000,
-      position: 'middle'
+      position: 'bottom'
     });
 
     toast.onDidDismiss(() => {

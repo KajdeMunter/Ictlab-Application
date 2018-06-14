@@ -3,7 +3,7 @@
     <name>HR Timetable</name>
     <description>An awesome Ionic application for HR.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Gerben den Boer</author>
-    <content original-src="index.html" src="http://145.24.254.69:8100" />
+    <content original-src="index.html" src="http://145.24.221.179:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -70,12 +70,11 @@
     <allow-navigation href="http://145.24.254.155:8100" />
     <allow-navigation href="http://145.24.254.81:8100" />
     <allow-navigation href="http://192.168.2.140:8100" />
-    <allow-navigation href="http://145.24.254.60:8100" />
-    <allow-navigation href="http://145.24.254.69:8100" />
-    <engine name="android" spec="7.0.0" />
     <allow-navigation href="http://192.168.178.11:8100" />
     <plugin name="cordova-plugin-firebase" spec="^1.0.0" />
     <allow-navigation href="http://145.24.221.221:8100" />
+    <allow-navigation href="http://192.168.178.12:8100" />
+    <allow-navigation href="http://145.24.221.179:8100" />
     <engine name="android" spec="~7.0.0" />
     <engine name="ios" spec="^4.5.4" />
 </widget>

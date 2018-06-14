@@ -18,12 +18,15 @@ export class SendnotificationProvider {
     const notificationsRef = this.afs.collection('notifications');
 
     // Add the data to the collection
+    // TODO get own userID as senderID
     notificationsRef.add({
       title,
       body,
       userId,
       Read: 'False',
+      Fixed: 'False',
       Date: new Date(),
+      senderId: 'testUser',
     });
   }
 }
