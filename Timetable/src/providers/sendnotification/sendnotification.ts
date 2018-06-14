@@ -24,6 +24,7 @@ export class SendnotificationProvider {
       body,
       userId,
       Read: 'False',
+      Fixed: 'False',
       Date: new Date(),
       senderId: 'testUser',
     });
