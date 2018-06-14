@@ -45,6 +45,7 @@ export class AccountPage {
         this.nativeStorage.clear()
           .then(() => {
             loading.dismiss().then(() => {
+              this.dismiss();
               this.app.getRootNav().setRoot(LoginPage, {}, {animate: true, direction: 'back'});
             });
           })

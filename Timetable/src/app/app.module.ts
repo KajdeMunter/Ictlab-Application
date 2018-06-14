@@ -24,6 +24,7 @@ import { ProfilePage } from '../pages/profile/profile';
 import { AboutPage } from '../pages/about/about';
 import { DayPipe } from '../pipes/day/day';
 import { TimePipe } from '../pipes/time/time';
+import { AlertProvider } from '../providers/alert/alert';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { TimePipe } from '../pipes/time/time';
     ApiProvider,
     HTTP,
     DatePicker,
-    InAppBrowser
+    InAppBrowser,
+    AlertProvider
   ]
 })
 export class AppModule {}

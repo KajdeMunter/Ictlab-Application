@@ -44,7 +44,8 @@ export class LoginPage {
       nativeStorage.setItem('user', { user })
       });
     }, (err) => {
-      console.log(err)
+      console.log(err);
+      console.log(err.error);
       loading.dismiss();
     }
     ).then(() => {
