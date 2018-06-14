@@ -13,8 +13,6 @@ export class UserModel {
     private expiryDateToken: any;
 
     constructor(res, callback){
-
-
         this.firstName = res['givenName'];
         this.lastName = res['familyName'];
         this.fullName = res['displayName'];

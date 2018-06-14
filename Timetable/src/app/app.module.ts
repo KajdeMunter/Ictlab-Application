@@ -3,7 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { Firebase } from '@ionic-native/firebase'
+import { Firebase } from '@ionic-native/firebase';
 
 import { GooglePlus } from '@ionic-native/google-plus';
 
@@ -26,6 +26,7 @@ import { AboutPage } from '../pages/about/about';
 import { IncidentPage } from '../pages/incident/incident';
 import { DayPipe } from '../pipes/day/day';
 import { TimePipe } from '../pipes/time/time';
+import { AlertProvider } from '../providers/alert/alert';
 
 import { FcmProvider } from '../providers/fcm/fcm';
 import { AngularFireModule } from 'angularfire2';
@@ -94,6 +95,7 @@ const firebase = {
     HTTP,
     DatePicker,
     InAppBrowser,
+    AlertProvider
     FcmProvider,
     SendnotificationProvider
   ]

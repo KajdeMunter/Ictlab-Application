@@ -6,7 +6,8 @@ import { LessonModel } from '../../models/lesson';
 import { DayModel } from '../../models/day';
 import { ApiProvider } from '../../providers/api/api';
 import { DayPipe } from '../../pipes/day/day';
- 
+import { ClassroomModel } from '../../models/classroom';
+
 @IonicPage()
 @Component({
   selector: 'page-schedule',
@@ -15,6 +16,8 @@ import { DayPipe } from '../../pipes/day/day';
 export class SchedulePage {
 
   schedule: DayModel[] = [];
+  rooms;
+
   filter = [];
 
   constructor(
@@ -25,7 +28,9 @@ export class SchedulePage {
     private http: HTTP,
     private api: ApiProvider
   ) {
-    this.setScheduleForClass('INF3A', 23);
+    this.setRooms();
+    //this.setScheduleForClass('INF3A', 23);
+    this.setScheduleForRoom('H.4.318' , 23);
     this.filter = [];
   }
 
@@ -34,20 +39,54 @@ export class SchedulePage {
     alert.setTitle(lesson.getCode());
     alert.setMessage(lesson.getRoom());
     alert.addButton('OK');
-    alert.present();  
+    alert.present();
+  }
+
+  public setRooms() {
+    this.api.getRooms(this.http).then(response => {
+      this.rooms = response;
+      this.rooms = this.rooms.sort((a, b) => a.getId() < b.getId() ? -1 : a.getId() > b.getId() ? 1 : 0);
+    })
+      .catch((error) => {
+        let alert = this.alertCtrl.create();
+        alert.setTitle(config.oops_title);
+        alert.setMessage(config.oops_message);
+        alert.addButton('OK');
+        alert.present();
+      })
   }
 
   public setScheduleForClass(group, week) {
     this.api.getClassSchedule(group, week, this.http).then(response => {
       this.schedule = response;
     })
-    .catch((error) => {
-      let alert = this.alertCtrl.create();
-      alert.setTitle(config.oops_title);
-      alert.setMessage(config.oops_message);
-      alert.addButton('OK');
-      alert.present();  
+      .catch((error) => {
+        let alert = this.alertCtrl.create();
+        alert.setTitle(config.oops_title);
+        alert.setMessage(config.oops_message);
+        alert.addButton('OK');
+        alert.present();
+      })
+  }
+
+  public setScheduleForRoom(room, week) {
+    let loading = this.loadingCtrl.create({ content: config.loading });
+    loading.present();
+    this.api.getRoomSchedule(room, week, this.http).then(response => {
+      loading.dismiss().then(() => {
+        this.schedule = response;
+      })
     })
+      .catch((error) => {
+        loading.dismiss().then(() => {
+          let alert = this.alertCtrl.create();
+          alert.setTitle(config.oops_title);
+          alert.setMessage(config.oops_message);
+          alert.addButton('OK');
+          alert.present();
+        })
+       
+      })
   }
 
   public filterScheduleType() {
@@ -65,9 +104,13 @@ export class SchedulePage {
     alert.addButton({
       text: 'OK',
       handler: data => {
+        if(data == 'classes') {
+          this.filterScheduleClass();
+        } else {
+          this.filterScheduleRooms();
+        }
         this.filter[0] = data;
-        console.log(this.filter);
-        this.filterScheduleClass();
+
       }
     });
     alert.present();
@@ -81,15 +124,45 @@ export class SchedulePage {
         type: 'radio',
         label: group.variant,
         value: group.variant,
-        checked: group.c
+        checked: false
       });
     })
     alert.addButton('Cancel');
     alert.addButton({
       text: 'OK',
       handler: data => {
-        this.filter[1] = data;
-        this.filterScheduleDate();
+        if (data != null) {
+          this.filter[1] = data;
+          this.filterScheduleDate();
+        } else {
+          this.filterScheduleClass();
+        }
+      }
+    });
+    alert.present();
+  }
+
+  public filterScheduleRooms() {
+    let alert = this.alertCtrl.create();
+    alert.setTitle('Your room');
+    this.rooms.forEach(room => {
+      alert.addInput({
+        type: 'radio',
+        label: room.getId(),
+        value: room.getId(),
+        checked: false
+      });
+    })
+    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'OK',
+      handler: data => {
+        if (data != null) {
+          this.filter[1] = data;
+          this.filterScheduleDate();
+        } else {
+          this.filterScheduleRooms();
+        }
       }
     });
     alert.present();
@@ -113,7 +186,11 @@ export class SchedulePage {
         let loading = this.loadingCtrl.create({ content: config.loading });
         loading.present();
         this.filter[2] = data;
-        this.setScheduleForClass(this.filter[1], this.filter[2]);
+        if(this.filter[0] == 'classes') {
+          this.setScheduleForClass(this.filter[1], this.filter[2]);
+        } else {
+          this.setScheduleForRoom(this.filter[1], this.filter[2]);
+        }
         loading.dismiss();
       }
     });

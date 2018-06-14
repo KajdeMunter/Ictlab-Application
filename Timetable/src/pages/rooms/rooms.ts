@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import * as config from '../../app/config';
+import { ApiProvider } from '../../providers/api/api';
+import { HTTP } from '@ionic-native/http';
 
 
 @IonicPage()
@@ -23,6 +25,8 @@ export class RoomsPage {
     public navParams: NavParams,
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
+    private api: ApiProvider,
+    private http: HTTP
   ) {
     this.dummy = [1, 2, 3, 4, 5, 6, 7];
     this.blocks = config.blocks;
@@ -43,28 +47,28 @@ export class RoomsPage {
   }
 
   confirmRoom() {
-    let alert = this.alertCtrl.create();
-    alert.setTitle('Confirmation');
-    alert.setMessage('You are about to book room H.4.308. Are you sure about that?');
-    alert.addButton('Cancel');
-    alert.addButton({
-      text: 'Confirm',
-      handler: data => {
-        let loading = this.loadingCtrl.create({ content: config.loading });
-        loading.present();
+    let loading = this.loadingCtrl.create({ content: config.loading });
+    loading.present();
+    this.api.bookRoom(24, 3, 1, 2, 30, 'H.1.112', this.http)
+      .then(response => {
         loading.dismiss().then(() => {
-          this.presentReceipt();
-        });;
-      }
-    });
-    alert.present();
+          this.presentReceipt('H.1.110', 'Great!', 'Your booking of room 12.3.H is completed and it is ready for use on the reserved time.');
+        })
+        console.log(response);
+      })
+      .catch((error) => {
+        loading.dismiss().then(() => {
+          this.presentReceipt('H.1.110', 'Oops... MAKE A NEW REFRESHER HERE', 'Something went wrong when we tried to book your room. It might not be available anymore.');
+        })
+        console.log(error);
+      })
   }
 
-  presentReceipt() {
+  presentReceipt(room: string, status: string, message: string) {
     let alert = this.alertCtrl.create();
-    alert.setTitle('Successful');
-    alert.setMessage('Your room has been booked and is ready for use.'),
-      alert.addButton('OK');
+    alert.setTitle(status);
+    alert.setMessage(message),
+    alert.addButton('OK');
     alert.present();
   }
 
@@ -111,7 +115,7 @@ export class RoomsPage {
     alert.addButton({
       text: 'OK',
       handler: data => {
-        if(data != null) {
+        if (data != null) {
           this.date = data;
         }
       }
