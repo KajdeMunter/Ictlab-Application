@@ -33,6 +33,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { SendnotificationProvider } from '../providers/sendnotification/sendnotification';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
+import { AuthenticationProvider } from '../providers/authentication/authentication';
 
 
 const firebase = {
@@ -92,12 +93,14 @@ const firebase = {
     GooglePlus,
     NativeStorage,
     ApiProvider,
+    AuthenticationProvider,
     HTTP,
     DatePicker,
     InAppBrowser,
     AlertProvider,
     FcmProvider,
-    SendnotificationProvider
+    SendnotificationProvider,
+    AuthenticationProvider
   ]
 })
 export class AppModule {}

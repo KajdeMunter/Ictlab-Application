@@ -26,7 +26,7 @@ export class SendnotificationProvider {
       Read: 'False',
       Fixed: 'False',
       Date: new Date(),
-      senderId: 'testUser',
+      senderId: 'gerben',
     });
   }
 }

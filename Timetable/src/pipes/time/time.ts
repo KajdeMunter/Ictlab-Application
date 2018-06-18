@@ -10,7 +10,6 @@ export class TimePipe implements PipeTransform {
   transform(value: number, ...args) {
     let newValue;
     newValue = this.blocks[value - 1];
-
     return newValue;
   }
 }

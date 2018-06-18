@@ -19,7 +19,9 @@ export class LessonModel {
     this.endBlock = res['EndBlock'];
     this.teacher = res['Teacher'];
     this.code = res['CourseCode'];
-    this.room = res['Room'];
+    if(res['Rooms']) { this.room = res['Rooms']; }
+    if(res['Classroom']) { this.room = res['Classroom']; }
+
   }
 
   getId() { return this.id}
