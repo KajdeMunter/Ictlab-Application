@@ -3,17 +3,33 @@ import { Injectable } from '@angular/core';
 import { Firebase } from '@ionic-native/firebase';
 import { Platform } from 'ionic-angular';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { NativeStorage } from '@ionic-native/native-storage';
+import { UserModel } from '../../models/user';
 
 @Injectable()
 export class FcmProvider {
+
+  private user: UserModel;
 
   constructor(
     public http: HttpClient,
     public firebaseNative: Firebase,
     public afs: AngularFirestore,
-    private platform: Platform
+    private platform: Platform,
   ) {
     console.log('This FcmProvider should be run when the user logs in');
+  }
+
+  public getUser() {
+    let nativeStorage = new NativeStorage();
+    nativeStorage.getItem('user').then(res => {
+      this.user = res;
+      console.log('user: ', this.user)
+    }).catch(error => {
+      this.user = null;
+      console.log('user: ', this.user)
+      console.log(error);
+    });
   }
 
   async getToken() {
@@ -41,7 +57,7 @@ export class FcmProvider {
 
     const docData = {
       token,
-      userId: 'gerben', // TODO: this should eventually be the auth userID
+      userId: 'testUser',
     }
 
     return devicesRef.doc(token).set(docData)

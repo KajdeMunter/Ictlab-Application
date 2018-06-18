@@ -26,10 +26,12 @@ export class MyApp {
             ) {
     platform.ready().then(() => {
 
-      this.nativeStorage.getItem('user').then(
-        loggedIn => this.rootPage = TabBarPage,
-        error => this.rootPage = LoginPage
-      )
+      this.rootPage = LoginPage;
+
+      //this.nativeStorage.getItem('user').then(
+      //  loggedIn => this.rootPage = TabBarPage,
+      //  error => this.rootPage = LoginPage
+      //)
         
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
