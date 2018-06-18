@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { TabBarPage } from '../tab-bar/tab-bar';
 import { UserModel } from '../../models/user';
 import * as config from '../../app/config';
+import { ApiProvider } from '../../providers/api/api';
+import { HTTP } from '@ionic-native/http';
 
 @IonicPage()
 @Component({
@@ -18,14 +20,18 @@ export class LoginPage {
     public loadingCtrl: LoadingController,
     public navParams: NavParams,
     public googlePlus: GooglePlus,
-    public nativeStorage: NativeStorage
-  ) { 
+    public nativeStorage: NativeStorage,
+    public alertCtrl: AlertController,
+    private api: ApiProvider,
+    private http: HTTP
+  ) {
     this.navCtrl = navCtrl;
   }
 
 
   public signIn() {
     this.nativeStorage.clear();
+    let user;
     let loading = this.loadingCtrl.create({ content: config.loading });
     loading.present();
 
@@ -33,26 +39,31 @@ export class LoginPage {
       'webClientId': config.webClientId,
       'offline': true
     })
-    .then((res) => {
-      //Call naar Dylan
-      loading.dismiss().then(() => {
-        this.navCtrl.setRoot(TabBarPage, {}, {animate: true, direction: 'forward'})
-      })
-      let user = new UserModel(res, function(completeUser){
-      console.log(completeUser.fullName);
-      let nativeStorage = new NativeStorage();
-      nativeStorage.setItem('user', { user })
+      .then((res) => {
+        user = new UserModel(res);
+        this.nativeStorage.setItem('user', user);
+        loading.dismiss();
+      }
+      ).then(() => {
+        if (user.getEmail().endsWith('@hr.nl')) {
+          this.api.postIdToken(user.getIdToken(), this.http);
+          this.navCtrl.setRoot(TabBarPage, {}, { animate: true, direction: 'forward' })
+        } else {
+          this.signOut();
+          let alert = this.alertCtrl.create();
+          alert.setTitle('Warning');
+          alert.setMessage('You did not log in in with your Hogeschool Rotterdam details. Please log in with your @hr.nl credentials in order to use the app properly.');
+          alert.addButton('OK');
+          alert.present();
+        }
       });
-    }, (err) => {
-      console.log(err);
-      console.log(err.error);
-      loading.dismiss();
-    }
-    ).then(() => {
-      console.log('kaas');
-    });
   }
 
-  
+  public signOut() {
+    this.googlePlus.logout()
+      .then(() => { this.nativeStorage.clear() }
+      , function (error) {
+        console.log(error);
+      });
+  }
 }
-
