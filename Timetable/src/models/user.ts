@@ -12,7 +12,7 @@ export class UserModel {
     private idToken: string;
     private expiryDateToken: any;
 
-    constructor(res, callback){
+    constructor(res){
         this.firstName = res['givenName'];
         this.lastName = res['familyName'];
         this.fullName = res['displayName'];
@@ -20,15 +20,6 @@ export class UserModel {
         this.imageUrl = res['imageUrl'];
         this.id = res['userId'];
         this.idToken = res['idToken'];
-
-        let api = new ApiProvider(new HTTP());
-        api.getExpDateToken(res['idToken'])
-        .then((value) => {
-            this.expiryDateToken = value
-            console.log(value);
-            console.log("Actual date:", JSON.stringify(this.expiryDateToken))
-            callback(this);
-        });
     }
 
     getFirstName(): string { return this.firstName; }

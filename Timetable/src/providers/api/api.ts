@@ -4,13 +4,9 @@ import { HTTP } from "@ionic-native/http";
 import { LessonModel } from "../../models/lesson";
 import { DayModel } from "../../models/day";
 import { ClassroomModel } from '../../models/classroom';
-import { NativeStorage } from '@ionic-native/native-storage';
-import { UserModel } from '../../models/user';
 
 @Injectable()
 export class ApiProvider {
-
-  private user: UserModel;
 
   constructor(
     private http: HTTP,
@@ -18,19 +14,18 @@ export class ApiProvider {
 
   }
 
-  public getUser() {
-    let nativeStorage = new NativeStorage();
-    nativeStorage.getItem('user').then(res => {
-      this.user = res;
-      console.log('user: ', this.user)
-    }).catch(error => {
-      this.user = null;
-      console.log('user: ', this.user)
-      console.log(error);
-    });
+  public postIdToken(idToken: string, http: HTTP) {
+    let string = config.baseApiString + config.loginString;
+    http.post(string, {}, { Authorization: 'Bearer ' + idToken })
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error.error);
+      });
   }
 
-  public bookRoom(week: number, weekDay: number, startBlock: number, endBlock: number, guests: number, classroom: string, http: HTTP) {
+  public bookRoom(week: number, weekDay: number, startBlock: number, endBlock: number, guests: number, classroom: string, http: HTTP, token: string) {
     let string = config.baseApiString + config.bookingString;
     let ret = [];
     return new Promise(function (resolve, reject) {
@@ -41,46 +36,81 @@ export class ApiProvider {
         "EndBlock": endBlock,
         "Guests": guests,
         "Classroom": classroom
-      }, { Authorization: 'tt2' })
-      .then(response => {
-        resolve(response);
-      })
-      .catch(error => {
-        console.log(error.error);
-        reject(error);
-      });
+      }, { Authorization: 'Bearer ' + token })
+        .then(response => {
+          resolve(response);
+        })
+        .catch(error => {
+          console.log(error.error);
+          reject(error);
+        });
     })
   }
 
-  public getRoomsByFilter(guests) {
-
+  public getBookings(week: number, http: HTTP, token: string) {
+    let string = config.baseApiString + config.personalString + week ;
+    let ret = [];
+    return new Promise(function (resolve, reject) {
+      http.get(string, {}, { Authorization: 'Bearer ' + token })
+        .then(response => {
+          let jsonData = JSON.parse(response.data);
+          console.log(jsonData);
+          jsonData.forEach(element => {
+            ret.push(new LessonModel(element));
+          });
+          resolve(ret);
+        })
+        .catch(error => {
+          console.log(error.error);
+          reject(error);
+        });
+    })
   }
 
-  public getRooms(http: HTTP) {
+  public getRoomsByFilter(guests: number, startBlock: number, endBlock: number, week: number, weekDay: number, http: HTTP, token: string) {
+    let string = config.baseApiString + config.filterString + guests + '/' + startBlock + '/' + endBlock + '/' + week + '/' + weekDay;
+    let ret = [];
+    return new Promise(function (resolve, reject) {
+      http.get(string, {}, { Authorization: 'Bearer ' + token })
+        .then(response => {
+          let jsonData = JSON.parse(response.data);
+          jsonData.forEach(element => {
+            ret.push(new ClassroomModel(element));
+          });
+          resolve(ret);
+        })
+        .catch(error => {
+          console.log(error.error);
+          reject(error);
+        });
+    })
+  }
+
+  public getRooms(http: HTTP, token: string) {
     let string = config.baseApiString + config.classesString;
     let ret = [];
     return new Promise(function (resolve, reject) {
-      http.get(string, {}, { Authorization: 'tt2' })
-      .then(response => {
-        let jsonData = JSON.parse(response.data);
-        jsonData.forEach(element => {
-          ret.push(new ClassroomModel(element));
+      http.get(string, {}, { Authorization: 'Bearer ' + token })
+        .then(response => {
+          let jsonData = JSON.parse(response.data);
+          jsonData.forEach(element => {
+            ret.push(new ClassroomModel(element));
+          });
+          resolve(ret);
+        })
+        .catch(error => {
+          console.log(error.error);
+          reject(error);
         });
-        resolve(ret);
-      })
-      .catch(error => {
-        console.log(error.error);
-        reject(error);
-      });
     })
   }
 
-  public getRoomSchedule(group: String, week: number, http: HTTP): Promise<DayModel[]> {
+  public getRoomSchedule(group: String, week: number, http: HTTP, token: string): Promise<DayModel[]> {
     let string = config.baseApiString + config.roomsScheduleString + group + '/' + week;
     let dayModelArray = [[], [], [], [], []];
     let schedule = [];
     return new Promise(function (resolve, reject) {
-      http.get(string, {}, { Authorization: 'tt2' })
+      http.get(string, {}, { Authorization: 'Bearer ' + token })
         .then(response => {
           let jsonData = JSON.parse(response.data);
           jsonData.forEach(element => {
@@ -100,12 +130,12 @@ export class ApiProvider {
     });
   }
 
-  public getClassSchedule(group: String, week: number, http: HTTP): Promise<DayModel[]> {
+  public getClassSchedule(group: String, week: number, http: HTTP, token: string): Promise<DayModel[]> {
     let string = config.baseApiString + config.classScheduleString + group + '/' + week;
     let dayModelArray = [[], [], [], [], []];
     let schedule = [];
     return new Promise(function (resolve, reject) {
-      http.get(string, {}, { Authorization: 'tt2' })
+      http.get(string, {}, { Authorization: 'Bearer ' + token })
         .then(response => {
           let jsonData = JSON.parse(response.data);
           jsonData.forEach(element => {

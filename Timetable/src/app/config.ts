@@ -9,12 +9,17 @@ export const oops_message: string = 'Something went wrong with loading your sche
 
 export const blocks = ['08.30', '09.20', '10.30', '11.20', '12.10', '13.00', '13.50', '15.00', '15.50', '17.00', '17.50', '18.40', '19.30', '20.20', '21.10'];
 export const dates = [
-  { date: '28-05-2018', value: '22', c: false },
-  { date: '04-06-2018', value: '23', c: true },
-  { date: '11-06-2018', value: '24', c: false },
-  { date: '18-06-2018', value: '25', c: false },
+  { date: '18-06-2018', value: '25', c: true },
   { date: '25-06-2018', value: '26', c: false },
   { date: '02-07-2018', value: '27', c: false }
+];
+
+export const days = [ 
+  { day: 'Monday',    value: '1'},
+  { day: 'Tuesday',   value: '2'},
+  { day: 'Wednesday', value: '3'},
+  { day: 'Thursday',  value: '4'},
+  { day: 'Friday',    value: '5'},
 ];
 
 export const schedules = [
@@ -50,10 +55,20 @@ export const classes = [
   { variant: 'INF3C', c: false },
   { variant: 'INF3D', c: false },
 
+  { variant: 'INF4A', c: false },
+  { variant: 'INF4B', c: false },
+  { variant: 'INF4C', c: false },
+
 ]
+
+export const preferedClass: string = 'INF3A';
 
 export const baseApiString: string = 'http://acceptancetimetable2api.azurewebsites.net/api/';
 export const classScheduleString: string = 'Schedule/Class/';
 export const roomsScheduleString: string = 'Schedule/Classroom/';
+export const personalString: string = 'Schedule/MyBookings/';
 export const classesString: string = 'Classroom/All/';
 export const bookingString: string = 'Booking/Book/';
+export const filterString: string = 'Booking/Filter/';
+
+export const loginString: string = 'Login/';

@@ -41,7 +41,7 @@ export class FcmProvider {
 
     const docData = {
       token,
-      userId: 'testUser', // TODO: this should eventually be the auth userID
+      userId: 'gerben', // TODO: this should eventually be the auth userID
     }
 
     return devicesRef.doc(token).set(docData)

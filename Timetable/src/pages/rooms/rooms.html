@@ -12,10 +12,11 @@
     <div class="filter" [class.active]="clicked == true" [class.inactive]="clicked == false">
       <div *ngIf="clicked == true">
         <h3>When do you need the room?</h3>
-        <button ion-button color="light" (click)="pickDate()">{{ date }}</button>
+        <button ion-button color="light" (click)="pickDate()">Week {{ week }}</button>
+        <button ion-button color="light" (click)="pickDay()">{{ weekDay | day }}</button>
         <h3>Your preffered time</h3>
-        <button ion-button color="light" (click)="showTimeRadioAlert(0)">{{ timeStart }}</button>
-        <button ion-button color="light" (click)="showTimeRadioAlert(1)">{{ timeEnd }}</button>
+        <button ion-button color="light" (click)="showTimeRadioAlert(0)">{{ timeStart | time }}</button>
+        <button ion-button color="light" (click)="showTimeRadioAlert(1)">{{ timeEnd | time }}</button>
         <h3>Guests</h3>
         <ion-row>
           <ion-col col-3>
@@ -31,19 +32,20 @@
           </ion-col>
         </ion-row>
         <div class="search-wrapper">
-          <button ion-button outline color="light" class="search-btn" (click)="applyFilter()">Filter Rooms</button>
+          <button ion-button outline color="light" class="search-btn" 
+          (click)="filterRooms(guests, timeStart, timeEnd, week, weekDay)"
+          >Filter Rooms</button>
         </div>
       </div>
     </div>
-    
-    <div class="room" (click)="confirmRoom()">
+
+    <div *ngIf="rooms?.length > 0" class="room">
       <h2>Available Rooms</h2>
       <ion-list no-lines>
-        <ion-item *ngFor="let d of dummy">
+        <ion-item *ngFor="let room of rooms" (click)="presentConfirm(room.id)">
           <ion-icon name="ios-pin-outline" color="primary" item-start></ion-icon>
-          <h3>H.4.308</h3>
-          <h3>12:00 - 13:00</h3>
-          <ion-badge item-end>70min</ion-badge>
+          <h3>{{ room.id }}</h3>
+          <h3 *ngIf="room.freeUntill != 99">Next lesson starts at: {{ room.freeUntill | time }}</h3>
         </ion-item>
       </ion-list>
     </div>
@@ -53,28 +55,6 @@
 </ion-content>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<!--
+  (click)="bookRoom(guests, timeStart, timeEnd, week, weekDay, room.id)
+-->

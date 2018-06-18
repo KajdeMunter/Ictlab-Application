@@ -8,14 +8,28 @@
       <ion-icon name="ios-navigate" (click)="filterScheduleType()"></ion-icon>
     </div>
 
+    <div *ngIf="bookings != null">
+      <div class="appointment">
+        <h2>My bookings</h2>
+        <ion-list no-lines>
+          <ion-item *ngFor="let booking of bookings">
+            <ion-icon name="ios-bookmark-outline" color="primary" item-start></ion-icon>
+            <h3> {{ booking.weekDay | day }} </h3>
+            <h3> {{ booking.startBlock | time }} - {{ booking.endBlock | time }}</h3>
+            <ion-badge item-end>{{ booking.room }}</ion-badge>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+
     <div *ngFor="let day of schedule" class="appointment">
       <h2> {{ day.weekDay | day }}</h2>
       <ion-list no-lines>
-        <ion-item *ngFor="let lesson of day.lessons" (click)="showLessonInfo(lesson)">
+        <ion-item *ngFor="let lesson of day.lessons">
           <ion-icon name="ios-school-outline" color="primary" item-start></ion-icon>
           <h3> {{ lesson.code }} </h3>
-          <h3> {{ lesson.startBlock | time }} -  {{ lesson.endBlock | time }}</h3>
-          <ion-badge item-end>{{ lesson.room }}</ion-badge>
+          <h3> {{ lesson.startBlock | time }} - {{ lesson.endBlock | time }}</h3>
+          <ion-badge item-end *ngFor="let room of lesson.room.slice(0,1)">{{ room.RoomId }}</ion-badge>
         </ion-item>
       </ion-list>
     </div>

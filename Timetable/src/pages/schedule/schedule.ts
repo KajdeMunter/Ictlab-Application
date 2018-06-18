@@ -7,6 +7,7 @@ import { DayModel } from '../../models/day';
 import { ApiProvider } from '../../providers/api/api';
 import { DayPipe } from '../../pipes/day/day';
 import { ClassroomModel } from '../../models/classroom';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 @IonicPage()
 @Component({
@@ -16,34 +17,41 @@ import { ClassroomModel } from '../../models/classroom';
 export class SchedulePage {
 
   schedule: DayModel[] = [];
+  bookings;
   rooms;
 
   filter = [];
+
+  authenticatedUserToken: string;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public alertCtrl: AlertController,
+    public nativeStorage: NativeStorage,
     private loadingCtrl: LoadingController,
     private http: HTTP,
     private api: ApiProvider
   ) {
-    this.setRooms();
-    //this.setScheduleForClass('INF3A', 23);
-    this.setScheduleForRoom('H.4.318' , 23);
     this.filter = [];
   }
 
-  public showLessonInfo(lesson: LessonModel) {
-    let alert = this.alertCtrl.create();
-    alert.setTitle(lesson.getCode());
-    alert.setMessage(lesson.getRoom());
-    alert.addButton('OK');
-    alert.present();
+  public getPersonalBookings() {
+    this.api.getBookings(25, this.http, this.authenticatedUserToken).then(response => {
+      this.bookings = response;
+      console.log('bookings: ', this.bookings)
+    })
+      .catch((error) => {
+        let alert = this.alertCtrl.create();
+        alert.setTitle(config.oops_title);
+        alert.setMessage(config.oops_message);
+        alert.addButton('OK');
+        alert.present();
+      })
   }
 
   public setRooms() {
-    this.api.getRooms(this.http).then(response => {
+    this.api.getRooms(this.http, this.authenticatedUserToken).then(response => {
       this.rooms = response;
       this.rooms = this.rooms.sort((a, b) => a.getId() < b.getId() ? -1 : a.getId() > b.getId() ? 1 : 0);
     })
@@ -57,8 +65,9 @@ export class SchedulePage {
   }
 
   public setScheduleForClass(group, week) {
-    this.api.getClassSchedule(group, week, this.http).then(response => {
+    this.api.getClassSchedule(group, week, this.http, this.authenticatedUserToken).then(response => {
       this.schedule = response;
+      console.log(this.schedule);
     })
       .catch((error) => {
         let alert = this.alertCtrl.create();
@@ -72,7 +81,7 @@ export class SchedulePage {
   public setScheduleForRoom(room, week) {
     let loading = this.loadingCtrl.create({ content: config.loading });
     loading.present();
-    this.api.getRoomSchedule(room, week, this.http).then(response => {
+    this.api.getRoomSchedule(room, week, this.http, this.authenticatedUserToken).then(response => {
       loading.dismiss().then(() => {
         this.schedule = response;
       })
@@ -85,7 +94,7 @@ export class SchedulePage {
           alert.addButton('OK');
           alert.present();
         })
-       
+
       })
   }
 
@@ -104,7 +113,7 @@ export class SchedulePage {
     alert.addButton({
       text: 'OK',
       handler: data => {
-        if(data == 'classes') {
+        if (data == 'classes') {
           this.filterScheduleClass();
         } else {
           this.filterScheduleRooms();
@@ -186,8 +195,9 @@ export class SchedulePage {
         let loading = this.loadingCtrl.create({ content: config.loading });
         loading.present();
         this.filter[2] = data;
-        if(this.filter[0] == 'classes') {
+        if (this.filter[0] == 'classes') {
           this.setScheduleForClass(this.filter[1], this.filter[2]);
+          console.log(this.filter[1], this.filter[2]);
         } else {
           this.setScheduleForRoom(this.filter[1], this.filter[2]);
         }
@@ -195,6 +205,15 @@ export class SchedulePage {
       }
     });
     alert.present();
+  }
+
+  ionViewWillEnter() {
+    this.nativeStorage.getItem('user').then((user) => {
+      this.authenticatedUserToken = user['idToken'];
+      this.setRooms();
+      this.setScheduleForClass(config.preferedClass, 25);
+      this.getPersonalBookings();
+    })
   }
 
 }
