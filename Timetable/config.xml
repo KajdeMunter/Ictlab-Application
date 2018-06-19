@@ -3,7 +3,7 @@
     <name>HR Timetable</name>
     <description>An awesome Ionic application for HR.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Gerben den Boer</author>
-    <content original-src="index.html" src="http://145.24.221.109:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />

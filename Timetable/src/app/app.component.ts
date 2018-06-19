@@ -26,7 +26,7 @@ export class MyApp {
             ) {
     platform.ready().then(() => {
 
-      this.rootPage = LoginPage;
+      this.rootPage = TabBarPage;
 
       //this.nativeStorage.getItem('user').then(
       //  loggedIn => this.rootPage = TabBarPage,

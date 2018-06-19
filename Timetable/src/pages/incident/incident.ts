@@ -6,6 +6,8 @@ import { ToastController } from 'ionic-angular';
 import { HTTP } from '@ionic-native/http';
 import { ApiProvider } from '../../providers/api/api';
 import * as config from '../../app/config';
+import { AuthenticationProvider } from '../../providers/authentication/authentication';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 /**
  * Generated class for the IncidentPage page.
@@ -21,8 +23,10 @@ import * as config from '../../app/config';
 })
 export class IncidentPage {
 
+  private authenticated
   private incident: FormGroup;
   private selectedRoom: string;
+  private authenticatedUserToken: string;
   rooms;
 
   constructor(
@@ -33,7 +37,9 @@ export class IncidentPage {
     private formBuilder: FormBuilder,
     private toastCtrl: ToastController,
     private http: HTTP,
-    private api: ApiProvider
+    private api: ApiProvider,
+    public nativeStorage: NativeStorage,
+    private auth: AuthenticationProvider
   ) {
     this.setRooms();
     this.incident = this.formBuilder.group({
@@ -42,7 +48,7 @@ export class IncidentPage {
   }
 
   public setRooms() {
-    this.api.getRooms(this.http).then(response => {
+    this.api.getRooms(this.http, this.authenticatedUserToken).then(response => {
       this.rooms = response;
       this.rooms = this.rooms.sort((a, b) => a.getId() < b.getId() ? -1 : a.getId() > b.getId() ? 1 : 0);
     })
@@ -102,6 +108,13 @@ export class IncidentPage {
     });
 
     toast.present();
+  }
+
+  ionViewWillEnter() {
+    this.nativeStorage.getItem('user').then((user) => {
+      this.authenticatedUserToken = user['idToken'];
+      console.log(this.authenticatedUserToken);
+    })
   }
 
 }
